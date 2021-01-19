@@ -143,9 +143,9 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="#" id="btn_empresas_afiliadas">
                                     <i class="nav-icon fa fa-building text-orange-d1"></i>
-                                    <span class="nav-text fadeable text-blue text-90">Empresas de Afiliadas</span>
+                                    <span class="nav-text fadeable text-blue text-90">Empresas Afiliadas</span>
                                 </a>
                             </li>
 

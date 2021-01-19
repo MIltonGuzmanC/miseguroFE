@@ -52,3 +52,20 @@ $("#btn_establecimientos").click(function(){
         }
     })
 })
+
+$("#btn_empresas_afiliadas").click(function(){
+    Swal.fire({
+        icon: 'question',
+        title: 'Cargando...',
+        text: 'Espere por favor',
+        allowOutsideClick : false,
+        allowEscapeKey : false,
+        showConfirmButton : false
+    });
+    $("#contenedor_principal").load('empresas_afiliadas.view.php',function(status,response,xhr){
+        if(xhr.status===404)
+        {
+            $("#contenedor_principal").html("<h1 class='h-1'>Error 404, p&aacute;gina no encontrada</h1>");
+        }
+    })
+})

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9a06fa6d-6808-47a1-9bdf-176916333451" name="Default Changelist" comment="Corregido error para id de cie alfanumèricas para editar y eliminar&#10;Corregido error para id de establecimientos alfanuméricos para editar y eliminar">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="9a06fa6d-6808-47a1-9bdf-176916333451" name="Default Changelist" comment="hasta aqui: crud completo hasta establecimientos">
+      <change afterPath="$PROJECT_DIR$/empresas_afiliadas.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/empresa_afilada.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cls/Establecimiento.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/Establecimiento.cls.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/eliminar_establecimiento.ctrl.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/eliminar_establecimiento.ctrl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/establecimientos.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/establecimientos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrador.vw.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrador.vw.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/admin_buttons.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/admin_buttons.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +62,9 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/controllers" />
     </key>
@@ -113,7 +116,8 @@
       <workItem from="1611018830803" duration="1077000" />
       <workItem from="1611020351247" duration="1960000" />
       <workItem from="1611023101607" duration="85000" />
-      <workItem from="1611023234706" duration="1845000" />
+      <workItem from="1611023234706" duration="3411000" />
+      <workItem from="1611069093450" duration="1335000" />
     </task>
     <task id="LOCAL-00001" summary="adición de seguridad en puerto de DB">
       <created>1611020661408</created>
@@ -129,7 +133,21 @@
       <option name="project" value="LOCAL" />
       <updated>1611021945445</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="hasta aqui: crud completo hasta establecimientos">
+      <created>1611030483187</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1611030483187</updated>
+    </task>
+    <task id="LOCAL-00004" summary="hasta aqui: crud completo hasta establecimientos">
+      <created>1611030729103</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1611030729103</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,6 +168,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="adición de seguridad en puerto de DB" />
     <MESSAGE value="Corregido error para id de cie alfanumèricas para editar y eliminar&#10;Corregido error para id de establecimientos alfanuméricos para editar y eliminar" />
-    <option name="LAST_COMMIT_MESSAGE" value="Corregido error para id de cie alfanumèricas para editar y eliminar&#10;Corregido error para id de establecimientos alfanuméricos para editar y eliminar" />
+    <MESSAGE value="hasta aqui: crud completo hasta establecimientos" />
+    <option name="LAST_COMMIT_MESSAGE" value="hasta aqui: crud completo hasta establecimientos" />
   </component>
 </project>

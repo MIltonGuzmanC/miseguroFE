@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9a06fa6d-6808-47a1-9bdf-176916333451" name="Default Changelist" comment="frontend de organizaciones y varios">
+    <list default="true" id="9a06fa6d-6808-47a1-9bdf-176916333451" name="Default Changelist" comment="correcciones pequeñas en apuntadores">
+      <change afterPath="$PROJECT_DIR$/controllers/actualizar_organizacion.ctrl.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cls/CategoriaCie10.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/CategoriaCie10.cls.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/admin_buttons.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/admin_buttons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/cie10.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/cie10.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cls/DatosDeOrganizacion.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/DatosDeOrganizacion.cls.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cls/Establecimiento.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/Establecimiento.cls.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/empresa_afilada.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/empresa_afilada.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/establecimientos.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/establecimientos.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +128,7 @@
       <workItem from="1611020351247" duration="1960000" />
       <workItem from="1611023101607" duration="85000" />
       <workItem from="1611023234706" duration="3411000" />
-      <workItem from="1611069093450" duration="10803000" />
+      <workItem from="1611069093450" duration="12631000" />
     </task>
     <task id="LOCAL-00001" summary="adición de seguridad en puerto de DB">
       <created>1611020661408</created>
@@ -170,7 +172,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611090541207</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="correcciones pequeñas en apuntadores">
+      <created>1611093518052</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1611093518052</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,6 +203,7 @@
     <MESSAGE value="hasta aqui: crud completo hasta establecimientos" />
     <MESSAGE value="frontend de organizaciones" />
     <MESSAGE value="frontend de organizaciones y varios" />
-    <option name="LAST_COMMIT_MESSAGE" value="frontend de organizaciones y varios" />
+    <MESSAGE value="correcciones pequeñas en apuntadores" />
+    <option name="LAST_COMMIT_MESSAGE" value="correcciones pequeñas en apuntadores" />
   </component>
 </project>

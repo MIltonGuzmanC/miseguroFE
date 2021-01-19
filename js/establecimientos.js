@@ -110,7 +110,6 @@ function actualizar_establecimiento(ind_de_establecimiento){
     var correo_electronico = $("#act_correo_electronico").val();
     var porcentaje_de_cobertura = $("#act_porcentaje_de_cobertura").val();
     var convenio_vigente = $("#act_convenio_vigente").val();
-    console.log(convenio_vigente.length);
 
     if((indice_de_establecimiento.toString().length>0)&&(id_de_establecimiento.length>0)&&(nombre_de_establecimiento.length>0)&&(ciudad.length>0)&&(direccion.length>0)&&(fono1.length>0)&&(fono2.length>0)&&(correo_electronico.length>0)&&(convenio_vigente.length>0))
     {

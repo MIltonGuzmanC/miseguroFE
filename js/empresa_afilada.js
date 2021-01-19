@@ -82,20 +82,15 @@ $("#btn_guardar_organizacion").click(function(e){
     }
 })
 
-function actualizar_organizacion(ind_de_establecimiento){
-    var indice_de_establecimiento = ind_de_establecimiento;
-    var id_de_establecimiento = $("#act_id_de_establecimiento").val();
-    var nombre_de_establecimiento = $("#act_nombre_de_establecimiento").val();
+function actualizar_organizacion(ind_organizacion){
+    var indice_de_organizacion = ind_organizacion;
+    var id_de_organizacion = $("#act_id_de_organizacion").val();
+    var nombre_de_organizacion = $("#act_nombre_de_organizacion").val();
     var ciudad = $("#act_ciudad").val();
     var direccion = $("#act_direccion").val();
-    var fono1 = $("#act_fono1").val();
-    var fono2 = $("#act_fono2").val();
-    var correo_electronico = $("#act_correo_electronico").val();
-    var porcentaje_de_cobertura = $("#act_porcentaje_de_cobertura").val();
-    var convenio_vigente = $("#act_convenio_vigente").val();
-    console.log(convenio_vigente.length);
+    var fono = $("#act_fono").val();
 
-    if((indice_de_establecimiento.toString().length>0)&&(id_de_establecimiento.length>0)&&(nombre_de_establecimiento.length>0)&&(ciudad.length>0)&&(direccion.length>0)&&(fono1.length>0)&&(fono2.length>0)&&(correo_electronico.length>0)&&(convenio_vigente.length>0))
+    if((indice_de_organizacion.toString().length>0)&&(id_de_organizacion.length>0)&&(nombre_de_organizacion.length>0)&&(ciudad.length>0)&&(direccion.length>0)&&(fono.length>0))
     {
         $(".card_main").html("<div class=\"alert alert-collapse bgc-white text-dark-tp3 border-1 brc-secondary-l2 shadow-sm radius-0 py-3 d-flex align-items-start\">\n" +
             "                  <div class=\"position-tl w-102 m-n1px border-t-4 brc-primary\"></div>\n" +
@@ -111,22 +106,18 @@ function actualizar_organizacion(ind_de_establecimiento){
             "                </div>");
         $.ajax({
             method : 'POST',
-            url : '/controllers/actualizar_establecimiento.ctrl.php',
+            url : '/controllers/actualizar_organizacion.ctrl.php',
             data : {
-                'indice_de_establecimiento':indice_de_establecimiento,
-                'id_de_establecimiento' : id_de_establecimiento,
-                'nombre_de_establecimiento' : nombre_de_establecimiento,
+                'indice_de_organizacion':indice_de_organizacion,
+                'id_de_organizacion' : id_de_organizacion,
+                'nombre_de_organizacion' : nombre_de_organizacion,
                 'ciudad' : ciudad,
                 'direccion' : direccion,
-                'fono1' : fono1,
-                'fono2' : fono2,
-                'correo_electronico' : correo_electronico,
-                'porcentaje_de_cobertura' : porcentaje_de_cobertura,
-                'convenio_vigente' : convenio_vigente
+                'fono' : fono
             }
         }).done(function(response){
             eval(response);
-            generar_lista_de_establecimientos(nombre_de_establecimiento);
+            generar_lista_de_organizaciones(nombre_de_organizacion);
         })
     }
 

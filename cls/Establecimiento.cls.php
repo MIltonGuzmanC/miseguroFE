@@ -289,9 +289,9 @@ class Establecimiento
             $this->convenio_vigente = $convenio_vigente;
             if(Conexion::conect()->update('establecimiento_con_convenio',[
                 'id_de_establecimiento' => $this->id_de_establecimiento,
-                'nombre_de_establecimiento' => utf8_encode($this->nombre_de_establecimiento),
-                'ciudad' => utf8_encode($this->ciudad),
-                'direccion' => utf8_encode($this->direccion),
+                'nombre_de_establecimiento' => $this->nombre_de_establecimiento,
+                'ciudad' =>$this->ciudad,
+                'direccion' =>$this->direccion,
                 'telefono1' => $this->telefono1,
                 'telefono2' => $this->telefono2,
                 'correo_electronico' => $this->correo_electronico,

@@ -85,6 +85,10 @@ class DatosDeOrganizacion
                             <th class=\"d-none d-sm-table-cell\">
                               CIUDAD
                             </th>
+                             <th class=\"d-none d-sm-table-cell\">
+                              DIRECCI&Oacute;N
+                            </th>
+                            
                             <th class=\"d-none d-sm-table-cell\">
                               TELEFONO
                             </th>
@@ -103,6 +107,9 @@ class DatosDeOrganizacion
                             </td>
                             <td class=\"d-none d-sm-table-cell text-grey text-95\">
                                 ".$this->info['ciudad']."
+                            </td>
+                            <td class=\"d-none d-sm-table-cell text-grey text-95\">
+                                ".utf8_decode($this->info['direccion'])."
                             </td>
                             <td class=\"d-none d-sm-table-cell text-grey text-95\">
                                 ".$this->info['telefono']."
@@ -207,6 +214,34 @@ class DatosDeOrganizacion
                 </div>
             </div>";
         echo $this->formulario_edicion;
+    }
+    function actualizar_organizacion($id_de_usuario,$indice_de_organizacion,$id_de_organizacion,$nombre_de_organizacion,$ciudad,$direccion,$telefono)
+    {
+        $this->indice_de_organizacion = $indice_de_organizacion;
+        $this->id_de_organizacion = $id_de_organizacion;
+
+        if(Conexion::conect()->count('datos_de_organizacion',['id_de_organizacion'=>$this->id_de_organizacion])>1)
+        {
+            echo "$(\".card_main\").html(\"<div class=\'text-dark-tp3\'><h3 class=\'text-success-d1 text-130\'>No se actualiz&oacute; el establecimiento </h3>Ya existe una Empresa Afiliada con el mismo RUC.</div>\")";
+        }
+        else
+        {
+            $this->id_de_usuario = $id_de_usuario;
+            $this->nombre_de_organizacion = utf8_encode($nombre_de_organizacion);
+            $this->ciudad = utf8_encode($ciudad);
+            $this->direccion = utf8_encode($direccion);
+            $this->telefono = $telefono;
+            if(Conexion::conect()->update('datos_de_organizacion',[
+                'id_de_organizacion' => $this->id_de_organizacion,
+                'nombre_de_organizacion' => $this->nombre_de_organizacion,
+                'ciudad' => $this->ciudad,
+                'direccion' => $this->direccion,
+                'telefono' => $this->telefono
+            ],['indice_de_organizacion'=>$this->indice_de_organizacion])){
+                Historial::nueva_actividad($this->id_de_usuario,'EMPRESAS AFILIADAS',$this->indice_de_organizacion.' EMPRESA ACTUALIZADA POR ESTE USUARIO');
+                echo "$(\".card_main\").html(\"<div class=\'text-dark-tp3\'><h3 class=\'text-success-d1 text-130\'>Registro actualizado</h3>Empresa afiliada actualizada correctamente.</div>\")";
+            }
+        }
     }
 }
 

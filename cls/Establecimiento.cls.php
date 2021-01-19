@@ -303,4 +303,34 @@ class Establecimiento
             }
         }
     }
+    function eliminar_establecimiento($id_de_usuario,$indice_de_establecimiento){
+        $this->indice_de_establecimiento = $indice_de_establecimiento;
+        $this->id_de_usuario = $id_de_usuario;
+        if(Conexion::conect()->count('encabezadp_de_reclamo',['indice_de_establecimiento_fk'=>$this->indice_de_establecimiento]))
+        {
+            echo "Swal.fire({
+                    icon: 'error',
+                    title: 'No se puede eliminar el registro',
+                    text: 'existen reclamos ligados a este Establecimiento.',
+                    allowOutsideClick : false,
+                    allowEscapeKey : false,
+                    showConfirmButton : true
+                });";
+        }
+        else
+        {
+            if(Conexion::conect()->delete('establecimiento_con_convenio',['indice_de_establecimiento'=>$this->indice_de_establecimiento]))
+            {
+                Historial::nueva_actividad($this->id_de_usuario,'ESTABLECIMIENTO','ESTABLECIMIENTO ELIMINADO POR ESTE USUARIO = '.$this->indice_de_establecimiento);
+                echo "Swal.fire({
+                    icon: 'success',
+                    title: 'Registro eliminado',
+                    text: 'Establecimiento eliminado correctamente',
+                    allowOutsideClick : false,
+                    allowEscapeKey : false,
+                    showConfirmButton : true
+                });";
+            }
+        }
+    }
 }

@@ -176,8 +176,8 @@ function eliminar_establecimiento(ind_estab)
                 url : 'controllers/eliminar_establecimiento.ctrl.php',
                 data :{'indice_de_establecimiento' : indice_de_establecimiento}
             }).done(function(response){
-                eval(response);
                 Swal.close();
+                eval(response);
                 generar_lista_de_establecimientos('*');
             })
         }

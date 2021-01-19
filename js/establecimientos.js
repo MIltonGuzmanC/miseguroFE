@@ -148,3 +148,38 @@ function actualizar_establecimiento(ind_de_establecimiento){
     }
 
 }
+
+function eliminar_establecimiento(ind_estab)
+{
+    var indice_de_establecimiento = ind_estab;
+    Swal.fire({
+        title: '¿Estamos seguros?',
+        text: "Una vez eliminado este Establecimiento, no hay manera de recuperarlo",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, eliminar',
+        cancelButtonText : 'No, no eliminar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                icon: 'info',
+                title: 'Gestionando',
+                text: 'Eliminando Establecimiento...',
+                allowOutsideClick : false,
+                allowEscapeKey : false,
+                showConfirmButton : false
+            });
+            $.ajax({
+                method : 'POST',
+                url : 'controllers/eliminar_establecimiento.ctrl.php',
+                data :{'indice_de_establecimiento' : indice_de_establecimiento}
+            }).done(function(response){
+                eval(response);
+                Swal.close();
+                generar_lista_de_establecimientos('*');
+            })
+        }
+    })
+}

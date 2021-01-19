@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9a06fa6d-6808-47a1-9bdf-176916333451" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cls/Conexion.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/Conexion.cls.php" afterDir="false" />
+    <list default="true" id="9a06fa6d-6808-47a1-9bdf-176916333451" name="Default Changelist" comment="adición de seguridad en puerto de DB">
+      <change afterPath="$PROJECT_DIR$/controllers/eliminar_establecimiento.ctrl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cls/CategoriaCie10.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/CategoriaCie10.cls.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/establecimientos.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/establecimientos.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,8 +110,16 @@
       <workItem from="1611011581256" duration="226000" />
       <workItem from="1611018458716" duration="221000" />
       <workItem from="1611018830803" duration="1077000" />
-      <workItem from="1611020351247" duration="286000" />
+      <workItem from="1611020351247" duration="1268000" />
     </task>
+    <task id="LOCAL-00001" summary="adición de seguridad en puerto de DB">
+      <created>1611020661408</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1611020661408</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -127,5 +136,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="adición de seguridad en puerto de DB" />
+    <option name="LAST_COMMIT_MESSAGE" value="adición de seguridad en puerto de DB" />
   </component>
 </project>

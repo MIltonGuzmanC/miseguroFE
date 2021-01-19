@@ -103,7 +103,7 @@ class CategoriaCie10
                                 <a data-fancybox data-type=\"ajax\" href=\"#\" class=\"mx-2px btn radius-1 border-2 btn-xs btn-brc-tp btn-light-secondary btn-h-lighter-success btn-a-lighter-success\" data-src=\"controllers/mostrar_formulario_de_edicion_de_cie.ctrl.php?codigo_de_cie=".$this->cie['codigo_de_cie']."\" href=\"javascript:;\">
         <i class=\"fa fa-pencil-alt\"></i>
                                 </a>
-                                <a href=\"#\" class=\"mx-2px btn radius-1 border-2 btn-xs btn-brc-tp btn-light-secondary btn-h-lighter-danger btn-a-lighter-danger\" onclick='eliminar_cie(".$this->cie['codigo_de_cie'].")'>
+                                <a href=\"#\" class=\"mx-2px btn radius-1 border-2 btn-xs btn-brc-tp btn-light-secondary btn-h-lighter-danger btn-a-lighter-danger\" onclick='eliminar_cie(\"".$this->cie['codigo_de_cie']."\")'>
                                   <i class=\"fa text-danger-l1 fa-trash-alt\"></i>
                                 </a>
                               </div>

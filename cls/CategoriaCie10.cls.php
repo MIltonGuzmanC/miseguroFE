@@ -120,7 +120,7 @@ class CategoriaCie10
         $lista = '';
         $data = Conexion::conect()->select('grupo_de_cie','*',["ORDER"=>'codigo_de_grupo_de_cie']);
         $lista.="<select class=\"px-5 mt-4 ace-select no-border text-dark-tp2 bgc-grey-l4 bgc-h-success-l3 brc-grey-m4 brc-h-success-m2 radius-round border-1 angle-down\" id=\"codigo_de_grupo_cie\" onchange='generar_tabla_de_cies()'>
-                               <option value=\"\">SELECCIONA UN GRUPO</option>
+                               <option value=\"-\">SELECCIONA UN GRUPO</option>
                                <option value=\"*\">MOSTRAR TODO</option>";
         foreach ($data as $categoria)
         {

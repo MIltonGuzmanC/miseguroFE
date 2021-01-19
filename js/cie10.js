@@ -3,6 +3,7 @@ $(function ()
     Swal.close();
     cargar_select_de_categorias();
     generar_select_de_categorias_para_filtrar();
+
 })
 
 function guardar_categoria(){
@@ -64,6 +65,7 @@ function guardar_cie()
             eval(response);
             $("#form_cie")[0].reset();
             cargar_select_de_categorias();
+            generar_tabla_de_cies();
         })
     }
 }

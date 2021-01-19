@@ -3,7 +3,7 @@ require '../vendor/autoload.php';
 use Medoo\Medoo;
 
 class Conexion{
-
+    //METODO ESTATICO
     public static function conect()
     {
         if($_SERVER['SERVER_NAME']=='miseguro.local')

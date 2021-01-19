@@ -166,15 +166,15 @@ elseif($_SESSION['usuario']['indice_de_perfil_de_usuario']!=1)
             </div>
         </div>
         <div class="row">
-            <div class="card acard mt-2 col-4">
+            <div class="card acard mt-2 col-12">
                 <div class="card-header">
-                    <h3 class="card-title text-125 text-primary-d2">
-                        <i class="fa fa-hospital text-orange-d1 mr-1"></i>
-                        Lista de Cl&iacute;nicas y Establecimientos
+                    <h3 class="card-title text-125 text-primary-d2 px-3px">
+                        <i class="fa fa-thumbs-up text-success-d1 mr-1"></i>
+                        Lista de Empresas Afiliadas
                     </h3>
                     <div class="form-group row">
                         <div class="col-12">
-                            <div class="d-inline-flex align-items-center mb-1">
+                            <div class="d-inline-flex align-items-center mb-1 px-3px">
                                 <i class="fa fa-search text-success text-110 ml-25 pos-abs"></i>
                                 <input type="text" class="form-control form-control-lg px-475" id="txt_buscador" placeholder="Buscar por nombre">
                             </div>
@@ -198,7 +198,6 @@ elseif($_SESSION['usuario']['indice_de_perfil_de_usuario']!=1)
 <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
 <script src="dist/js/ace.js"></script>
 <script src="views/pages/form-basic/@page-script.js"></script>
-
 <script src="js/empresa_afilada.js"></script>
 
 </html>

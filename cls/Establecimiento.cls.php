@@ -41,8 +41,8 @@ class Establecimiento
             if(Conexion::conect()->insert('establecimiento_con_convenio',[
                 'id_de_establecimiento'=>$this->id_de_establecimiento,
                 'nombre_de_establecimiento'=>$this->nombre_de_establecimiento,
-                'provincia' =>utf8_encode($this->provincia),
-                'ciudad' =>utf8_encode($this->ciudad),
+                'provincia' =>$this->provincia,
+                'ciudad' =>$this->ciudad,
                 'direccion' =>$this->direccion,
                 'telefono1' =>$this->telefono1,
                 'telefono2' =>$this->telefono2,

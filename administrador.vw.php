@@ -150,7 +150,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="#" id="btn_beneficiarios_y_afiliados">
                                     <i class="nav-icon fa fa-people-arrows text-orange-d1"></i>
                                     <span class="nav-text fadeable text-blue text-90">Beneficiarios y Afiliados</span>
                                 </a>
@@ -186,8 +186,7 @@
 <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
 <script src="fancybox/jquery.fancybox.js"></script>
 <script src="js/admin_buttons.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.13.0/dist/sweetalert2.all.min.js" integrity="sha256-J9avsZWTdcAPp1YASuhlEH42nySYLmm0Jw1txwkuqQw=" crossorigin="anonymous"></script>
-
+<script src="js/sweetalert2.all.js"></script>
 <!-- include ace.js -->
 <script src="./dist/js/ace.js"></script>
 <script>

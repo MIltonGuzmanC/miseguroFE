@@ -23,12 +23,12 @@
                 $this->message = $message;
 
 
-                //$this->mail->SMTPDebug = 3;
+                //$this->mail->SMTPDebug = 2;
                 $this->mail->isSMTP();                                            // Send using SMTP
-                $this->mail->Host       = 'mail.smartsara.co';                    // Set the SMTP server to send through
+                $this->mail->Host       = 'mail.ingenio-soft.com';                    // Set the SMTP server to send through
                 $this->mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-                $this->mail->Username   = 'soporte@smartsara.co';                     // SMTP username
-                $this->mail->Password   = 'SmartSara2020';                               // SMTP password
+                $this->mail->Username   = 'milton@ingenio-soft.com';                     // SMTP username
+                $this->mail->Password   = 'Pekler_1981';                               // SMTP password
                 $this->mail->Port       = 26;
 
                 //SENDER RECEIVER SETUP

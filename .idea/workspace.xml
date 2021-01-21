@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a06fa6d-6808-47a1-9bdf-176916333451" name="Default Changelist" comment="creando el formulario de edicion de beneficiarios">
+      <change afterPath="$PROJECT_DIR$/controllers/actualizar_informacion_de_usuario.ctrl.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cls/Beneficiarios.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/Beneficiarios.cls.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cls/Mailer.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/Mailer.cls.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/beneficiarios.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/beneficiarios.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +129,7 @@
       <workItem from="1611023234706" duration="3411000" />
       <workItem from="1611069093450" duration="18369000" />
       <workItem from="1611115784223" duration="3975000" />
-      <workItem from="1611159201287" duration="207000" />
+      <workItem from="1611159201287" duration="9163000" />
     </task>
     <task id="LOCAL-00001" summary="adición de seguridad en puerto de DB">
       <created>1611020661408</created>
@@ -190,7 +194,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611120521675</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="creando el formulario de edicion de beneficiarios">
+      <created>1611159885701</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1611159885701</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

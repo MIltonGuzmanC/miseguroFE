@@ -18,3 +18,57 @@ $("#txt_buscar_beneficiario").keyup(function(){
     var valor = $("#txt_buscar_beneficiario").val();
     generar_lista_de_beneficiarios(valor);
 });
+
+function actualizar_beneficiario(id_de_beneficiario){
+    var act_nombres = $("#act_nombres").val();
+    var act_apellidos = $("#act_apellidos").val();
+    var act_fecha_de_nacimiento = $("#act_fecha_de_nacimiento").val();
+    var act_fecha_de_alta = $("#act_fecha_de_alta").val();
+    var act_cargo_ocupacion = $("#act_cargo_ocupacion").val();
+    var act_telefono_de_contacto = $("#act_telefono_de_contacto").val();
+    var act_direccion = $("#act_direccion").val();
+    var act_email = $("#act_email").val();
+    var act_es_titular_de_cuenta = $("#act_es_titular_de_cuenta").val();
+    var act_rol_familiar = $("#act_rol_familiar").val();
+    var act_tiene_acceso_al_sistema = $("#act_tiene_acceso_al_sistema").val();
+    if((act_nombres.length>3)&&(act_apellidos.length>3)&&(act_fecha_de_nacimiento.toString().length>3)&&(act_fecha_de_alta.toString().length>3)&&(act_cargo_ocupacion.length>3)&&(act_telefono_de_contacto.length>5)&&(act_direccion.length>5)&&(act_email.length>5)&&(act_es_titular_de_cuenta.length>0)&&(act_rol_familiar.length>3)&&(act_tiene_acceso_al_sistema.length>0))
+    {
+        $(".card_main").html("<div class=\"alert alert-collapse bgc-white text-dark-tp3 border-1 brc-secondary-l2 shadow-sm radius-0 py-3 d-flex align-items-start\">\n" +
+            "                  <div class=\"position-tl w-102 m-n1px border-t-4 brc-primary\"></div>\n" +
+            "                  <div class=\"bgc-primary px-4 py-25 radius-1px mr-4 shadow-sm\">\n" +
+            "                    <i class=\"fa fa-exclamation text-180 text-white\"></i>\n" +
+            "                  </div>\n" +
+            "\n" +
+            "                  <div class=\"text-dark-tp3\">\n" +
+            "                    <h3 class=\"text-blue-d1 text-130\">Actualizando registro</h3>\n" +
+            "                    Un momento por favor....\n" +
+            "                  </div>\n" +
+            "\n" +
+            "                </div>");
+        $.ajax({
+            method : 'POST',
+            url : '/controllers/actualizar_informacion_de_usuario.ctrl.php',
+            data : {
+                'numero_de_id_de_usuario' : id_de_beneficiario,
+                'nombres' : act_nombres,
+                'apellidos' : act_apellidos,
+                'fecha_de_nacimiento' : act_fecha_de_nacimiento,
+                'fecha_de_alta' : act_fecha_de_alta,
+                'cargo_ocupacion' : act_cargo_ocupacion,
+                'telefono_de_contacto' : act_telefono_de_contacto,
+                'email' : act_email,
+                'direccion' : act_direccion,
+                'es_titular_de_cuenta' : act_es_titular_de_cuenta,
+                'rol_familiar' : act_rol_familiar,
+                'tiene_acceso_al_sistema' : act_tiene_acceso_al_sistema,
+            }
+        }).done(function(response){
+            eval(response);
+            generar_lista_de_beneficiarios(id_de_beneficiario);
+        })
+    }
+    else
+    {
+        alert("No debe existir campos sin valor en le formulario, no se puede actualizar el registro");
+    }
+}

@@ -549,7 +549,7 @@ class Beneficiarios{
             ])){
                 Historial::nueva_actividad($this->id_de_usuario,'USUARIOS','NUEVO USUARIO REGISTRADO :'.$this->numero_de_id_de_usuario);
                 echo "$(\".card_main\").html(\"<div class=\'text-dark-tp3\'><h3 class=\'text-success-d1 text-130\'>Usuario registrado</h3>Usuario egistrado en el sistema correctamente .</div>\")";
-                if($this->id_de_dependiente==1)
+                /*if($this->id_de_dependiente==1)
                 {
                     $this->email = new Mailer();
                     $this->email->enviar_correo(ADMIN_MAIL,ADMIN_NAME,$this->email,$this->nombres,'REGISTRO EXITOSO A MISEGURO','<h3 class="text-purple-d1">Bienvenido a MiSeguroFE</h3><p>Su cuenta ha sido registrada exitosamente.</p>');
@@ -558,7 +558,7 @@ class Beneficiarios{
                 {
                     $this->email = new Mailer();
                     $this->email->enviar_correo(ADMIN_MAIL,ADMIN_NAME,$this->email,$this->nombres,'NUEVO BENEFICIARIO REGISTRADO','<h3 class="text-purple-d1">Bienvenido a MiSeguroFE</h3><p>Hay un nuevo dependiente de seguro registrado a su cuenta, si cree que es un error, por favor responda a este correo con el respectivo reclamo.</p>');
-                }
+                }*/
             }
         }
     }

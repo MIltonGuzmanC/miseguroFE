@@ -3,8 +3,10 @@
 include_once 'Conexion.cls.php';
 class TablaDeParametros
 {
-    private $data;
+    private $data,$fecha;
+
     function mostrar_tabla_de_valores(){
+        $this->fecha=date('Y');
         $this->data = Conexion::conect()->get('parametros_del_sistema','*');
         echo "<div role=\"main\" class=\"main-content\">
             <div class=\"page-content container\">

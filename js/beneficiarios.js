@@ -72,3 +72,61 @@ function actualizar_beneficiario(id_de_beneficiario){
         alert("No debe existir campos sin valor en le formulario, no se puede actualizar el registro");
     }
 }
+
+function guardar_nuevo_beneficiario()
+{
+    var id_de_dependiente = $("#id_de_dependiente").val();
+    var numero_de_id_de_usuario = $("#id_usuario").val();
+    var nombres = $("#nombres").val();
+    var apellidos = $("#apellidos").val();
+    var cargo_ocupacion = $("#cargo_ocupacion").val();
+    var rol_familiar = $("#rol_familiar").val();
+    var fecha_de_nacimiento = $("#fecha_nacimiento").val();
+    var provincia = $("#provincia").val();
+    var ciudad = $("#ciudad").val();
+    var telefono_de_contacto = $("#telefono").val();
+    var email = $("#correo").val();
+    var direccion = $("#direccion").val();
+
+    if((id_de_dependiente.length>0)&&(numero_de_id_de_usuario.length>5)&&(nombres.length>5)&&(apellidos.length>5)&&(cargo_ocupacion.length>4)&&(rol_familiar.length>5)&&(fecha_de_nacimiento.toString().length>3)&&(provincia.length>3)&&(ciudad.length>3)&&(telefono_de_contacto.length>3)&&(direccion.length>3))
+    {
+        $(".card_main").html("<div class=\"alert alert-collapse bgc-white text-dark-tp3 border-1 brc-secondary-l2 shadow-sm radius-0 py-3 d-flex align-items-start\">\n" +
+            "                  <div class=\"position-tl w-102 m-n1px border-t-4 brc-primary\"></div>\n" +
+            "                  <div class=\"bgc-primary px-4 py-25 radius-1px mr-4 shadow-sm\">\n" +
+            "                    <i class=\"fa fa-exclamation text-180 text-white\"></i>\n" +
+            "                  </div>\n" +
+            "\n" +
+            "                  <div class=\"text-dark-tp3\">\n" +
+            "                    <h3 class=\"text-blue-d1 text-130\">Actualizando registro</h3>\n" +
+            "                    Un momento por favor....\n" +
+            "                  </div>\n" +
+            "\n" +
+            "                </div>");
+        $.ajax({
+            method : 'POST',
+            url : '/controllers/guardar_nuevo_usuario.ctrl.php',
+            data : {
+                'numero_de_id_de_usuario' : numero_de_id_de_usuario,
+                'nombres' : nombres,
+                'apellidos' : apellidos,
+                'fecha_de_nacimiento' : fecha_de_nacimiento,
+                'cargo_ocupacion' : cargo_ocupacion,
+                'telefono_de_contacto' : telefono_de_contacto,
+                'email' : email,
+                'provincia' : provincia,
+                'ciudad' : ciudad,
+                'direccion' : direccion,
+                'id_de_dependiente' : id_de_dependiente,
+                'rol_familiar' : rol_familiar
+            }
+        }).done(function(response){
+            eval(response);
+            generar_lista_de_beneficiarios(numero_de_id_de_usuario);
+        })
+    }
+    else
+    {
+        alert("Todos los campos son necesarios");
+    }
+
+}

@@ -23,7 +23,7 @@
                 $this->message = $message;
 
 
-                //$this->mail->SMTPDebug = 2;
+                $this->mail->SMTPDebug = 3;
                 $this->mail->isSMTP();                                            // Send using SMTP
                 $this->mail->Host       = 'mail.ingenio-soft.com';                    // Set the SMTP server to send through
                 $this->mail->SMTPAuth   = true;                                   // Enable SMTP authentication
@@ -35,7 +35,7 @@
                 $this->mail->setFrom($this->from,$this->from_name);
                 $this->mail->addAddress($this->to,$this->to_name);     // Add a recipient
                 $this->mail->addReplyTo($this->from, 'Respuesta a asunto : '.$this->subject);
-                $this->mail->addBCC('milton@ingenio-soft.com');
+                //$this->mail->addBCC('milton@ingenio-soft.com');
 
                 //CONTENT
                 $this->mail->isHTML(true);                                  // Set email format to HTML
@@ -128,4 +128,4 @@
 	}
 
 	//$test = new Mailer;
-	//$test->enviar_correo('milton@ingenio-sot.com','Milton Gmail','milton.guzman@gmail.com','Milton Hotmail','Mensaje de prueba','Este es un <b>Mensaje de prueba</b>');
+	//$test->enviar_correo('milton@ingenio-sot.com','Milton Gmail','milton.guzman@hotmail.com','Milton Hotmail','Mensaje de prueba','Este es un <b>Mensaje de prueba</b>');

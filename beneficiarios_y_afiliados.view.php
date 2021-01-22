@@ -33,6 +33,10 @@ elseif($_SESSION['usuario']['indice_de_perfil_de_usuario']!=1)
                             <i class="fa fa-search text-success text-110 ml-25 pos-abs"></i>
                             <input type="text" class="form-control form-control-lg px-475" id="txt_buscar_beneficiario" placeholder="c&eacute;dula / pasaporte">
                         </div>
+                        <div class="d-inline-flex align-items-end mb-1 px-3px">
+                            <a data-fancybox data-type='ajax' href='#' class='mx-2px btn radius-1 border-2 btn-xs btn-brc-tp btn-light-secondary btn-h-lighter-success btn-a-lighter-success' data-src='controllers/mostrar_formulario_nuevo_beneficiario.ctrl.php?numero_de_id_de_usuario=1' href='javascript:;'>
+                            <i class="fa fa-user-plus text-purple-d1"></i></a>
+                        </div>
                     </div>
                 </div>
 

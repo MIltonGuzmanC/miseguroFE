@@ -128,5 +128,25 @@ function guardar_nuevo_beneficiario()
     {
         alert("Todos los campos son necesarios");
     }
+}
 
+function cambiar_estado_de_activacion_de_usuario(id_de_usuario)
+{
+    Swal.fire({
+        icon: 'question',
+        title: 'Actualizando...',
+        text: 'Cambiando estado, espere por favor',
+        allowOutsideClick : false,
+        allowEscapeKey : false,
+        showConfirmButton : false
+    });
+    $.ajax({
+        method : 'POST',
+        data : {'id_de_usuario':id_de_usuario},
+        url : '/controllers/cambiar_estado_de_usuario.ctrl.php'
+    }).done(function(response){
+        Swal.close();
+        generar_lista_de_beneficiarios(id_de_usuario);
+        eval(response);
+    })
 }

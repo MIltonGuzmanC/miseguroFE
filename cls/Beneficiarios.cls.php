@@ -6,7 +6,7 @@ include_once 'Mailer.cls.php';
 include_once '../config.ini.php';
 class Beneficiarios{
     private $filtro,$data,$beneficiario,$tabla,$organizacion,$formulario_de_edicion,$provincia,$ciudad,$btn_beneficiario,$etq_benefactor;
-    private $id_de_usuario,$numero_de_id_de_usuario,$nombres,$apellidos,$fecha_de_nacimiento,$fecha_de_alta,$cargo_ocupacion,$tipo_de_cuenta,$telefono_de_contacto,$email,$direccion,$es_titular_de_cuenta,$rol_familiar,$tiene_acceso_al_sistema,$correo,$id_de_dependiente,$formulario;
+    private $id_de_usuario,$numero_de_id_de_usuario,$nombres,$apellidos,$fecha_de_nacimiento,$fecha_de_alta,$cargo_ocupacion,$tipo_de_cuenta,$telefono_de_contacto,$email,$direccion,$es_titular_de_cuenta,$rol_familiar,$tiene_acceso_al_sistema,$correo,$id_de_dependiente,$formulario,$etq_activacion,$estado_de_usuario;
     function generar_lista_de_beneficiarios($filtro)
     {
         $this->filtro = $filtro;
@@ -52,6 +52,15 @@ class Beneficiarios{
                 {
                     $this->btn_beneficiario="<i class=\"fa fa-user-alt text-success-d1\"></i>";
                 }
+
+                if($this->beneficiario['activar_usuario']==1)
+                {
+                    $this->etq_activacion = "<i class='fa fa-power-off text-success-l3'></i>";
+                }
+                else
+                {
+                    $this->etq_activacion = "<i class='fa fa-power-off text-danger-d1'></i>";
+                }
                 $this->tabla.="<tr class=\"bgc-h-orange-l4 text-90\">
                           <td class=\"text-dark-m3\">
                                 ".utf8_decode($this->beneficiario['numero_de_id_de_usuario'])."
@@ -77,8 +86,8 @@ class Beneficiarios{
         <i class=\"fa fa-pencil-alt text-secondary-d1\"></i>
                                 </a>
                                 ".$this->btn_beneficiario."
-                            <button type=\"button\" class=\"btn btn-sm btn-outline-default shadow-sm radius-2px px-1 py-1\">
-                                <i class='fa fa-trash text-danger-l2'></i>
+                            <button type=\"button\" class=\"btn btn-sm btn-outline-default shadow-sm radius-2px px-1 py-1\" onclick='cambiar_estado_de_activacion_de_usuario(".$this->beneficiario['numero_de_id_de_usuario'].")'>
+                                ".$this->etq_activacion."
                             </button>
                           </td>
                         </tr>";
@@ -561,6 +570,33 @@ class Beneficiarios{
                 }*/
             }
         }
+    }
+    function cambiar_estado_de_usuario($id_de_usuario,$num_id_usuario)
+    {
+        $this->numero_de_id_de_usuario = $num_id_usuario;
+        $this->id_de_usuario = $id_de_usuario;
+        $this->beneficiario = Conexion::conect()->get('informacion_de_usuario','*',['numero_de_id_de_usuario'=>$this->numero_de_id_de_usuario]);
+        if($this->beneficiario['activar_usuario']==1)
+        {
+            $this->estado_de_usuario = 0;
+        }
+        else
+        {
+            $this->estado_de_usuario = 1;
+        }
+        if(Conexion::conect()->update('informacion_de_usuario',['activar_usuario'=>$this->estado_de_usuario],['numero_de_id_de_usuario'=>$this->numero_de_id_de_usuario])){
+            Historial::nueva_actividad($this->id_de_usuario,'USUARIOS','CAMBIO DE ESTADO REALIZADO SOBRE EL USUARIO '.$this->numero_de_id_de_usuario);
+            echo "Swal.fire({
+                icon: 'success',
+                title: 'Registro actualizado',
+                text: 'Cambio de estado de Usuario realizado exitosamente',
+                allowOutsideClick : false,
+                allowEscapeKey : false,
+                showConfirmButton : true
+            });";
+        }
+
+
     }
 }
 

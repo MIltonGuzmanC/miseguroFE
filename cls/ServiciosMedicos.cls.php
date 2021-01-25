@@ -124,7 +124,6 @@ class ServiciosMedicos
                         Formulario de ingreso
                     </h5>
                 </div><!-- /.card-header -->
-
                 <div class=\"card-body p-1\">
                     <div class=\"container\">
                         <div class=\"card acard\">

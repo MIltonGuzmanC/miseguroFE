@@ -1,4 +1,4 @@
-$("#btn_tabla_de_parametros").click(function(){
+$("#btn_servicios_medicos").click(function(){
     Swal.fire({
         icon: 'question',
         title: 'Cargando...',
@@ -7,7 +7,8 @@ $("#btn_tabla_de_parametros").click(function(){
         allowEscapeKey : false,
         showConfirmButton : false
     });
-    $("#contenedor_principal").load('tabla_de_parametros.view.php',function(status,response,xhr){
+    $("#contenedor_principal").load('servicios_medicos.view.php',function(status,response,xhr){
+        Swal.close();
         if(xhr.status===404)
         {
             $("#contenedor_principal").html("<h1 class='h-1'>Error 404, p&aacute;gina no encontrada</h1>");

@@ -122,9 +122,9 @@
                         </div>
                         <ul class="nav flex-column has-active-border">
                             <li class="nav-item">
-                                <a class="nav-link" href="#" id="btn_tabla_de_parametros">
+                                <a class="nav-link" href="#" id="btn_servicios_medicos">
                                     <i class="nav-icon fa fa-table text-orange-d1"></i>
-                                    <span class="nav-text fadeable text-blue text-90">Tabla de par&aacute;metros</span>
+                                    <span class="nav-text fadeable text-blue text-90">Servicios m&eacute;dicos</span>
                                 </a>
                             </li>
 
@@ -191,7 +191,7 @@
 <script src="./dist/js/ace.js"></script>
 <script>
     $(function(){
-        $("#contenedor_principal").load('tabla_de_parametros.view.php',function(status,response,xhr){
+        $("#contenedor_principal").load('servicios_medicos.view.php',function(status,response,xhr){
             if(xhr.status===404)
             {
                 $("#contenedor_principal").html("<h1 class='h-1'>Error 404, p&aacute;gina no encontrada</h1>");

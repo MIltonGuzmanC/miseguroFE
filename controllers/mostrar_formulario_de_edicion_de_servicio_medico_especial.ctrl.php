@@ -10,8 +10,8 @@ else{
         die("intento ilegal de acceder al sistema, no tiene permisos suficientes");
     }
     else{
-        include_once '../cls/ServiciosMedicos.cls.php';
-        $ben = new ServiciosMedicos();
-        $ben->generar_lista_de_servicios_medicos($_POST['filtro']);
+        include_once '../cls/ServiciosMedicosEspeciales.cls.php';
+        $ben = new ServiciosMedicosEspeciales();
+        $ben->generar_formulario_de_edicion_de_servicio_medico($_GET['indice_de_servicio_medico']);
     }
 }

@@ -123,42 +123,51 @@
                         <ul class="nav flex-column has-active-border">
                             <li class="nav-item">
                                 <a class="nav-link" href="#" id="btn_servicios_medicos">
-                                    <i class="nav-icon fa fa-table text-orange-d1"></i>
+                                    <i class="nav-icon fa fa-comment-medical text-purple-d1"></i>
                                     <span class="nav-text fadeable text-blue text-90">Servicios m&eacute;dicos</span>
                                 </a>
                             </li>
 
                             <li class="nav-item">
+                                <a class="nav-link" href="#" id="btn_servicios_medicos_especiales">
+                                    <i class="nav-icon fa fa-file-medical text-purple-d2"></i>
+                                    <span class="nav-text fadeable text-blue text-85">Servicios m&eacute;dicos especiales</span>
+                                </a>
+                            </li>
+
+
+
+                            <li class="nav-item">
                                 <a class="nav-link" href="#" id="btn_cie10">
-                                    <i class="nav-icon fa fa-book-medical text-orange-d1"></i>
+                                    <i class="nav-icon fa fa-book-medical text-purple-d3"></i>
                                     <span class="nav-text fadeable text-blue text-90">CIE-10</span>
                                 </a>
                             </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" href="#" id="btn_establecimientos">
-                                    <i class="nav-icon fa fa-hospital-alt text-orange-d1"></i>
+                                    <i class="nav-icon fa fa-hospital-alt text-purple-d4"></i>
                                     <span class="nav-text fadeable text-blue text-90">Cl&iacute;nicas / Establecimientos</span>
                                 </a>
                             </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" href="#" id="btn_empresas_afiliadas">
-                                    <i class="nav-icon fa fa-building text-orange-d1"></i>
+                                    <i class="nav-icon fa fa-building text-purple-l1"></i>
                                     <span class="nav-text fadeable text-blue text-90">Empresas Afiliadas</span>
                                 </a>
                             </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" href="#" id="btn_beneficiarios_y_afiliados">
-                                    <i class="nav-icon fa fa-people-arrows text-orange-d1"></i>
+                                    <i class="nav-icon fa fa-people-arrows text-purple-l2"></i>
                                     <span class="nav-text fadeable text-blue text-90">Beneficiarios y Afiliados</span>
                                 </a>
                             </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
-                                    <i class="nav-icon fa fa-paperclip text-orange-d1"></i>
+                                    <i class="nav-icon fa fa-paperclip text-purple-l3"></i>
                                     <span class="nav-text fadeable text-blue text-90">Reembolsos y cr&eacute;ditos</span>
                                 </a>
                             </li>

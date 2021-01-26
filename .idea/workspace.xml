@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="9a06fa6d-6808-47a1-9bdf-176916333451" name="Default Changelist" comment="Seccion de servicios medicos completa">
+      <change afterPath="$PROJECT_DIR$/cls/ServiciosMedicosEspeciales.cls.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/actualizar_servicio_medico_especial.ctrl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/agregar_nuevo_servicio_medico_especial.ctrl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/generar_lista_de_servicios_medicos_especiales.ctrl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/mostrar_formulario_de_edicion_de_servicio_medico_especial.ctrl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/mostrar_formulario_de_nuevo_servicio_medico_especial.ctrl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/servicios_medicos_especiales.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/servicios_medicos_especiales.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrador.vw.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrador.vw.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cls/ServiciosMedicos.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/ServiciosMedicos.cls.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/generar_lista_de_servicios.ctrl.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/generar_lista_de_servicios.ctrl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/admin_buttons.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/admin_buttons.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/servicios_medicos.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/servicios_medicos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicios_medicos.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/servicios_medicos.view.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +148,8 @@
       <workItem from="1611471757090" duration="1339000" />
       <workItem from="1611500877126" duration="139000" />
       <workItem from="1611505146092" duration="71000" />
-      <workItem from="1611505303550" duration="15436000" />
+      <workItem from="1611505303550" duration="15556000" />
+      <workItem from="1611578532438" duration="9583000" />
     </task>
     <task id="LOCAL-00001" summary="adición de seguridad en puerto de DB">
       <created>1611020661408</created>
@@ -238,7 +256,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611551006436</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Seccion de servicios medicos completa">
+      <created>1611551080492</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1611551080492</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

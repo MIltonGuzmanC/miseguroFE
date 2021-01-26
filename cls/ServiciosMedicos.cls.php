@@ -4,7 +4,7 @@ include_once 'Mailer.cls.php';
 include_once 'Historial.cls.php';
 class ServiciosMedicos
 {
- private $id_de_usuario,$servicio_medico,$valor_dentro_de_cobertura,$valor_fuera_de_cobertura,$tipo_de_valor;
+ private $id_de_usuario,$servicio_medico,$valor_dentro_de_cobertura,$valor_fuera_de_cobertura,$tipo_de_valor,$filtro;
  private $valor_de_servicio,$data,$tabla,$servicio,$formulario,$etq_tipo_valor,$op,$indice_de_servicio_medico;
     function agregar_nuevo_servicio_medico($id_de_usuario,$servicio_medico,$valor_dentro_de_cobertura,$valor_fuera_de_cobertura,$tipo_de_valor)
     {
@@ -27,26 +27,19 @@ class ServiciosMedicos
 
     }
 
-    function agregar_nuevo_servicio_medico_especial($id_de_usuario,$servicio_medico,$valor_de_servicio)
+
+    function generar_lista_de_servicios_medicos($filtro)
     {
-        $this->id_de_usuario = $id_de_usuario;
-        $this->servicio_medico = utf8_encode(strtoupper($servicio_medico));
-        $this->valor_de_servicio = $valor_de_servicio;
-        if(Conexion::conect()->insert('servicios_medicos_especiales',[
-            'servicio_medico'=>$this->servicio_medico,
-            'valor_de_servicio'=>$this->valor_de_servicio,
-            'periodo'=>date('Y')
-        ]))
+        $this->filtro = $filtro;
+        if(($this->filtro == '*')||($this->filtro==' '))
         {
-            Historial::nueva_actividad($this->id_de_usuario,'SERVICIOS MEDICOS ESPECIALES','NUEVO SERVICIO MEDICO AGREGADO : '.$this->servicio_medico);
-            echo "$(\".card_main\").html(\"<div class=\'text-dark-tp3\'><h3 class=\'text-success-d1 text-130\'>Registro agregado</h3>Servicio medico especial agregado exitosamente.</div>\")";
+            $this->data = Conexion::conect()->select('servicios_medicos','*',["ORDER"=>'servicio_medico']);
+        }
+        else
+        {
+            $this->data = Conexion::conect()->select('servicios_medicos','*',['servicio_medico[~]'=>$this->filtro]);
         }
 
-    }
-
-    function generar_lista_de_servicios_medicos()
-    {
-        $this->data = Conexion::conect()->select('servicios_medicos','*',["ORDER"=>'servicio_medico']);
 
         $this->tabla.="<table id=\"simple-table\" class=\"table table-striped table-bordered table-hover brc-black-tp10 mb-0 text-grey\">
                         <thead class=\"text-dark-tp3 bgc-grey-l4 text-90 border-b-1 brc-transparent\">
@@ -318,7 +311,7 @@ class ServiciosMedicos
             'tipo_de_valor'=>$this->tipo_de_valor
         ],['indice_de_servicio_medico'=>$this->indice_de_servicio_medico]))
         {
-            Historial::nueva_actividad($this->id_de_usuario,'SERVICIOS MEDICOS ESPECIALES','SERVICIO MEDICO ACTUALIZADO : '.$this->servicio_medico);
+            Historial::nueva_actividad($this->id_de_usuario,'SERVICIOS MEDICOS','SERVICIO MEDICO ACTUALIZADO : '.$this->servicio_medico);
             echo "$(\".card_main\").html(\"<div class=\'text-dark-tp3\'><h3 class=\'text-success-d1 text-130\'>Registro actualizado</h3>Servicio medico actualizado exitosamente.</div>\")";
         }
 

@@ -34,7 +34,7 @@
     <div class="body-container">
         <div class="d-flex justify-content-between flex-column flex-sm-row mb-3 px-3px px-sm-0">
             <h3 class="text-125 pl-1 mb-3 mb-sm-0 text-primary-d1">
-                <i class="fa fa-book-medical text-orange-d1 px-1px"></i>Lista de servicios m&eacute;dicos
+                <i class="fa fa-book-medical text-orange-d1 px-1px"></i>Lista de servicios m&eacute;dicos especiales
             </h3>
 
             <div class="pos-rel ml-sm-auto mr-sm-2 order-last order-sm-0">
@@ -43,7 +43,7 @@
             </div>
 
             <div class="mb-2 mb-sm-0">
-                <a data-fancybox data-type="ajax" href="#" class="btn btn-blue px-3 d-block w-100 text-95 radius-round border-2 brc-black-tp10" data-src="controllers/mostrar_formulario_de_nuevo_servicio_medico.ctrl.php" href="javascript:;">
+                <a data-fancybox data-type="ajax" href="#" class="btn btn-blue px-3 d-block w-100 text-95 radius-round border-2 brc-black-tp10" data-src="controllers/mostrar_formulario_de_nuevo_servicio_medico_especial.ctrl.php" href="javascript:;">
                 <i class="fa fa-plus text-white"></i> Nuevo servicio m&eacute;dico
                 </a>
             </div>
@@ -62,7 +62,7 @@
 <script src="fancybox/jquery.fancybox.js"></script>
 <script src="dist/js/ace.js"></script>
 <script src="views/pages/form-basic/@page-script.js"></script>
-<script src="js/servicios_medicos.js"></script>
+<script src="js/servicios_medicos_especiales.js"></script>
 
 </html>
 

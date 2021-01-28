@@ -166,7 +166,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="#" id="btn_reembolsos_y_creditos">
                                     <i class="nav-icon fa fa-paperclip text-purple-l3"></i>
                                     <span class="nav-text fadeable text-blue text-90">Reembolsos y cr&eacute;ditos</span>
                                 </a>

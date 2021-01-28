@@ -4,22 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a06fa6d-6808-47a1-9bdf-176916333451" name="Default Changelist" comment="Seccion de servicios medicos completa">
-      <change afterPath="$PROJECT_DIR$/cls/ServiciosMedicosEspeciales.cls.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/actualizar_servicio_medico_especial.ctrl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/agregar_nuevo_servicio_medico_especial.ctrl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/generar_lista_de_servicios_medicos_especiales.ctrl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/mostrar_formulario_de_edicion_de_servicio_medico_especial.ctrl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/mostrar_formulario_de_nuevo_servicio_medico_especial.ctrl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/servicios_medicos_especiales.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/servicios_medicos_especiales.view.php" afterDir="false" />
+    <list default="true" id="9a06fa6d-6808-47a1-9bdf-176916333451" name="Default Changelist" comment="Seccion de servicios medicos y servicios medicos especiales completos">
+      <change afterPath="$PROJECT_DIR$/cls/Reembolso.cls.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/generar_lista_de_cies_para_formulario_de_reembolso.ctrl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/generar_nuevo_reembolso.ctrl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/mostrar_formulario_de_nuevo_reembolso.ctrl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/reembolsos_y_creditos.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reembolsos_y_creditos.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/composer/tmp-1f8eac1ea079f277a72e51bf3ed49fa3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/composer/tmp-27a6c7098c756375c20dfdaceb230384" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/composer/tmp-4a17eb9a4129e31449871c227cf0dc4d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/composer/tmp-7757fe26ba919bf5529ca60bac19071d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/composer/tmp-97b6b207697c13a99135d48b36390917" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/composer/tmp-cd46c1bf71d5669f3c5d33da1d1cbf25" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/composer/tmp-f2d6beebe35aaca62d47c6ea6ab7ec1f" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/composer/tmp-f35536a828b420e83cb69e38ebaf7a67" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/administrador.vw.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrador.vw.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cls/ServiciosMedicos.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/ServiciosMedicos.cls.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/generar_lista_de_servicios.ctrl.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/generar_lista_de_servicios.ctrl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cls/Beneficiarios.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/Beneficiarios.cls.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cls/Mailer.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/Mailer.cls.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.ini.php" beforeDir="false" afterPath="$PROJECT_DIR$/config.ini.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/admin_buttons.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/admin_buttons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/servicios_medicos.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/servicios_medicos.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicios_medicos.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/servicios_medicos.view.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,22 +68,30 @@
       <path value="$PROJECT_DIR$/vendor/catfan/medoo" />
       <path value="$PROJECT_DIR$/vendor/phpmailer/phpmailer" />
       <path value="$PROJECT_DIR$/vendor/ua-parser/uap-php" />
+      <path value="$PROJECT_DIR$/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/vendor/setasign/fpdi" />
+      <path value="$PROJECT_DIR$/vendor/mpdf/mpdf" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
     </include_path>
   </component>
   <component name="ProjectId" id="1m5VsHfnT6ojLZFjjHF7X2iuNug" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -149,7 +164,12 @@
       <workItem from="1611500877126" duration="139000" />
       <workItem from="1611505146092" duration="71000" />
       <workItem from="1611505303550" duration="15556000" />
-      <workItem from="1611578532438" duration="9583000" />
+      <workItem from="1611578532438" duration="9692000" />
+      <workItem from="1611676260336" duration="18455000" />
+      <workItem from="1611758531381" duration="3032000" />
+      <workItem from="1611762747877" duration="4423000" />
+      <workItem from="1611776979935" duration="304000" />
+      <workItem from="1611799797217" duration="613000" />
     </task>
     <task id="LOCAL-00001" summary="adición de seguridad en puerto de DB">
       <created>1611020661408</created>
@@ -263,7 +283,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611551080492</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Seccion de servicios medicos y servicios medicos especiales completos">
+      <created>1611633867806</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1611633867806</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,6 +309,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="adición de seguridad en puerto de DB" />
     <MESSAGE value="Corregido error para id de cie alfanumèricas para editar y eliminar&#10;Corregido error para id de establecimientos alfanuméricos para editar y eliminar" />
     <MESSAGE value="hasta aqui: crud completo hasta establecimientos" />
@@ -295,6 +323,11 @@
     <MESSAGE value="bloqueado el envío de correos en la cración de nuevos usuarios, hasta solucionar el bloqueo de los srvidores" />
     <MESSAGE value="Usuarios pueden ser bloqueados y desbloqueados desde la interfaz" />
     <MESSAGE value="Seccion de servicios medicos completa" />
-    <option name="LAST_COMMIT_MESSAGE" value="Seccion de servicios medicos completa" />
+    <MESSAGE value="Seccion de servicios medicos y servicios medicos especiales completos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Seccion de servicios medicos y servicios medicos especiales completos" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

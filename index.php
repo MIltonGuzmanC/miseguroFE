@@ -41,7 +41,6 @@
 
     <title>MiSeguro</title>
 
-
     <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="node_modules/@fortawesome/fontawesome-free/css/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="node_modules/@fortawesome/fontawesome-free/css/regular.css">
@@ -70,7 +69,7 @@
                                 <div class="tab-content tab-sliding border-0 p-0" data-swipe="right">
 
                                     <div class="tab-pane active show mh-100 px-3 px-lg-0 pb-3" id="id-tab-login">
-                                        <!-- show this in desktop -->
+
                                         <div class="d-none d-lg-block col-md-6 offset-md-3 mt-lg-4 px-0">
                                             <h4 class="text-dark-tp4 border-b-1 brc-secondary-l2 pb-1 text-130">
                                                 <a href="#">
@@ -79,7 +78,6 @@
                                             </h4>
                                         </div>
 
-                                        <!-- show this in mobile device -->
                                         <div class="d-lg-none text-secondary-m1 my-4 text-center">
                                             <a href="#">
                                                 <img src="assets/image/logo.png" alt="MiSeguro" width="25%">
@@ -92,7 +90,6 @@
 
                                             Bienvenid@
                                         </div>
-
 
                                         <form autocomplete="off" class="form-row mt-4" id="form_login">
                                             <div class="form-group col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">

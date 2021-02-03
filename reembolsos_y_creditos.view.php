@@ -64,7 +64,7 @@
 
         <div class="pos-rel ml-sm-auto mr-sm-2 order-last order-sm-0">
             <i class="fa fa-search position-lc ml-25 text-primary-m1"></i>
-            <input type="text" class="form-control w-100 pl-45 radius-1 brc-primary-m4 text-80" placeholder="buscar por ID de Usuario" id="filtro">
+            <input type="text" class="form-control w-100 pl-45 radius-1 brc-primary-m4 text-80" placeholder="buscar por ID de Usuario" id="txt_filtro">
         </div>
 
         <div class="mb-2 mb-sm-0">

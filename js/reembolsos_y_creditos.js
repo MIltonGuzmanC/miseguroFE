@@ -1,4 +1,5 @@
 $(function(){
+    generar_lista_de_reembolsos('*');
     Swal.close();
 });
 $("#btn_nuevo_reembolso").click(function(){
@@ -66,8 +67,9 @@ function generar_nuevo_reembolso()
                 'cie10' : cie10
             }
         }).done(function(response){
-            Swal.close();
             eval(response);
+            Swal.close();
+
         })
     }
     else{
@@ -80,5 +82,32 @@ function generar_nuevo_reembolso()
             showConfirmButton : true
         });
     }
-
 }
+function generar_formulario_de_detalles_de_reembolso(numero_de_documento)
+{
+
+    $.ajax({
+        method : 'POST',
+        data : {'numero_de_documento':String(numero_de_documento)},
+        url : '/controllers/generar_formulario_de_detalles_de_reembolso.ctrl.php'
+    }).done(function(response){
+        $("#div_formulario_nuevo_reembolso").html(response);
+    })
+}
+
+function generar_lista_de_reembolsos(filtro)
+{
+    $.ajax({
+        method : 'POST',
+        url : '/controllers/generar_lista_de_reembolsos.ctrl.php',
+        data : {'filtro' : filtro}
+    }).done(function(response){
+        $("#div_formulario_nuevo_reembolso").html(response);
+    })
+}
+
+$("#txt_filtro").keyup(function(){
+    var filtro = $("#txt_filtro").val();
+    generar_lista_de_reembolsos(filtro);
+})
+

@@ -3,13 +3,14 @@ date_default_timezone_set('America/Lima');
 include_once 'Conexion.cls.php';
 include_once 'Historial.cls.php';
 include_once 'Mailer.cls.php';
+include_once 'MovimientoDeUsuario.cls.php';
 include_once '../config.ini.php';
 class Reembolso
 {
     private $formulario_nuevo_reembolso,$data_reembolso,$beneficiario,$encabezado_de_reembolso,$data_de_usuario,$num_reembolsos,$id_de_usuario,$digitador,$mail,$etq_estado,$informacion_de_encabezado;
     private $id_de_administrador,$numero_de_documento,$enfermedad_preexistente,$tipo_de_reembolso,$codigo_de_grupo_de_cie,$cie10,$estado_de_reembolso,$formulario_de_reembolso;
     private $filtro,$data,$lista_de_reembolsos,$formulario_de_detalle_de_reembolsos;
-    private $item_formulario_1,$data_de_establecimientos,$establecimiento,$lista_de_establecimientos;
+    private $item_formulario_1,$encabezado;
     static function  generar_datalist_de_usuarios()
     {
         $data = Conexion::conect()->select('informacion_de_usuario','*',['activar_usuario'=>1]);
@@ -48,29 +49,7 @@ class Reembolso
         return $lista;
     }
 
-    static function retornar_saldo_de_usuario($id_de_usuario)
-    {
-        $total_debe  = 0;
-        $total_haber = 0;
-        $saldo_total = 0;
-        $datos_de_usuario = Conexion::conect()->get('informacion_de_usuario','*',['numero_de_id_de_usuario'=>$id_de_usuario]);
-        if($datos_de_usuario['es_titular_de_cuenta'] ==1)
-        {
-            $datos_de_titular_de_cuenta = $datos_de_usuario;
-        }
-        else
-        {
-            $datos_de_titular_de_cuenta = Conexion::conect()->get('informacion_de_usuario','*',['numero_de_id_de_usuario'=>$datos_de_usuario['id_de_dependiente']]);
-        }
-        $movimientos_de_usuario = Conexion::conect()->select('movimientos_de_usuario','*',['AND'=>['periodo'=>date('Y'),'numero_de_id_de_usuario_fk'=>$datos_de_titular_de_cuenta['numero_de_id_de_usuario']]]);
-        foreach ($movimientos_de_usuario as $movimientos)
-        {
-            $total_debe = $total_debe+$movimientos['debe'];
-            $total_haber = $total_haber+$movimientos['haber'];
-        }
-        $saldo_total = $total_debe - $total_haber;
-        return $saldo_total;
-    }
+
 
     static function generar_lista_de_grupos_de_cie10()
     {
@@ -100,6 +79,7 @@ class Reembolso
             </div>
             <div class='card-body'>
                 <input type='hidden' id='numero_de_documento' value='".$this->num_reembolsos."'>
+                
                 <div class='form-group form-row'>
                     <div class='form-inline col-4'>
                         <label for='id_de_usuario' class='label'>
@@ -287,12 +267,13 @@ class Reembolso
                       </table>
                     </div><!-- /.card-body -->
                     <div class='card-footer'>
-                        <h4 class='text-orange'> Saldo a la fecha : $ ".self::retornar_saldo_de_usuario($this->data_de_usuario['numero_de_id_de_usuario'])."</h4>
+                        <h4 class='text-orange'> Saldo a la fecha : $ ".MovimientoDeUsuario::retornar_saldo_de_usuario($this->data_de_usuario['numero_de_id_de_usuario'])."</h4>
                     </div>
                   </div><!-- /.card -->
                 </div>
                 
         </div>";
+
         //AQUI VA LOS DETALLES DE EL REEMBOLSO ASI COMO INFORMACION DEL ESTADO
 
         $this->encabezado_de_reembolso.="<div class=\"col-12 cards-container\" id=\"card-container-2\">";
@@ -303,7 +284,7 @@ class Reembolso
                       </h5>
                       ".$this->verificar_estado_de_reembolso_y_si_es_posible_editarlo($this->numero_de_documento,$this->estado_de_reembolso)."
                     </div>
-                    <div class=\"card-body bgc-transparent p-0 border-1 brc-primary-m3 border-t-0\" id='cuerpo_de_reembolso'>
+                    <div class=\"card-body bgc-transparent p-0 border-1 brc-primary-m3 border-t-0\" id='div_detalles_de_reembolso'>
                     
                     </div>";
         $this->encabezado_de_reembolso.="</div>";
@@ -401,7 +382,7 @@ class Reembolso
         }
         else
         {
-            //SI EL PROCESO YA ESTÁ CERRADO
+            //SI EL PROCESO YA ESTÁ CERRADO, PROGRAMAR AQUI!!! LOS OTROS ESTADOS
         }
         return $this->formulario_de_detalle_de_reembolsos;
     }
@@ -424,21 +405,40 @@ class Reembolso
     function agregar_item_formulario_1($numero_de_documento)
     {
         $this->numero_de_documento = $numero_de_documento;
-        $this->item_formulario_1 = "<form class='form'>
-                                       
+        $this->encabezado = Conexion::conect()->get('encabezado_de_reembolso','*',['numero_de_documento'=>$this->numero_de_documento]);
+        $this->item_formulario_1 = "<div class='card-main'>
+                                    <form class='form'>
+                                       <input type='hidden' id='numero_de_documento' value=\"".$this->numero_de_documento."\">
+                                       <input type='hidden' id='indice_de_reembolso' value=\"".$this->encabezado['indice_de_reembolso']."\">
                                         <div class='row form-group'>
                                            <div class='col-7'><label for='numero_de_factura' class='text-blue-d1'>N&uacute;mero de factura </label></div>
                                             <div class='col-4'>
-                                                <input type='number' class='form-control text-90' id='numero_de_factura' placeholder='Factura'>
+                                                <input type='number' class='form-control text-90' id='numero_de_factura' >
                                             </div>
                                         </div>    
-                                            <div class='row form-group'>
-                                                <div class='col-7'><label for='indice_de_establecimiento' class='text-blue-d1'>Cl&iacute;nica o Establecimiento </label></div>
-                                                <div class='col-5'>
-                                                    ".self::generar_lista_de_establecimientos()."
-                                                </div>
+                                        <div class='row form-group'>
+                                           <div class='col-7'><label for='fecha_de_factura' class='text-blue-d1'>Fecha de factura </label></div>
+                                            <div class='col-4'>
+                                                <input type='date' class='form-control text-90' id='fecha_de_factura'>
                                             </div>
-                                    </form>";
+                                        </div> 
+                                        <div class='row form-group'>
+                                            <div class='col-7'><label for='indice_de_establecimiento' class='text-blue-d1'>Cl&iacute;nica o Establecimiento </label></div>
+                                            <div class='col-5'>
+                                                ".self::generar_lista_de_establecimientos()."
+                                            </div>
+                                        </div>
+                                        <div class='row form-group'>
+                                            <div class='col-5'><label for='porcentaje' class='text-blue-d1'>Servicio</label></div>
+                                            <div class='col-7'>
+                                                ".self::generar_lista_de_servicios_medicos()."
+                                            </div>
+                                        </div>   
+                                        <section id='seccion_de_valores'>
+                                        
+                                        </section>
+                                        
+                                    </form></div>";
         echo $this->item_formulario_1;
     }
 
@@ -447,13 +447,184 @@ class Reembolso
     {
         $data_de_establecimientos = Conexion::conect()->select('establecimiento_con_convenio','*',['ORDER'=>'convenio_vigente']);
         $lista_de_establecimientos='';
-        $lista_de_establecimientos.="<select class='form-control text-90' id='indice_de_establecimiento' >";
+        $lista_de_establecimientos.="<select class='form-control text-90' id='indice_de_establecimiento' onchange='f1_generar_campo_de_descuento()'>";
         $lista_de_establecimientos.="<option value='0'>Seleccionar</option>";
             foreach ($data_de_establecimientos as $establecimiento)
             {
-                $lista_de_establecimientos.="<option value=\"".$establecimiento['indice_de_establecimiento']."\">".utf8_decode($establecimiento['nombre_de_establecimiento'])."</option>";
+                if($establecimiento['convenio_vigente']=='1')
+                {
+                    $etq_convenio = 'SI';
+                }
+                else
+                {
+                    $etq_convenio = 'NO';
+                }
+                $lista_de_establecimientos.="<option value=\"".$establecimiento['indice_de_establecimiento']."\">".utf8_decode($establecimiento['nombre_de_establecimiento'])." ¿Tiene Convenio? ".$etq_convenio."</option>";
             }
         $lista_de_establecimientos.="</select>";
         return $lista_de_establecimientos;
+    }
+
+    //FUNCION QUE GENERA UNA LISTA DE SERVICIOS MEDICOS
+    static function generar_lista_de_servicios_medicos()
+    {
+        $data_servicio_medico = Conexion::conect()->select('servicios_medicos','*',['ORDER'=>'servicio_medico']);
+        $lista_de_servicios_medicos="";
+        $lista_de_servicios_medicos.="<select class='form-control text-90' id='indice_de_servicio_medico' onchange='f1_generar_campo_de_descuento()'>";
+            $lista_de_servicios_medicos.="<option value='0'>Seleccionar</option>";
+            foreach ($data_servicio_medico as $servicio_medico)
+            {
+                $lista_de_servicios_medicos.="<option value=\"".$servicio_medico['indice_de_servicio_medico']."\">".utf8_decode($servicio_medico['servicio_medico'])."</option>";
+            }
+        $lista_de_servicios_medicos.="</select>";
+        return $lista_de_servicios_medicos;
+    }
+
+    //FUNCION QUE GENERA EL INPUT DE DESCUENTO SEGUN ESTABLECIMIENTO Y SERVICIO
+
+    static function generar_input_de_descuento($id_de_establecimiento,$id_de_servicio_medico)
+    {
+        $establecimiento = Conexion::conect()->get('establecimiento_con_convenio','*',['indice_de_establecimiento'=>$id_de_establecimiento]);
+        $input='';
+        $servicio_medico = Conexion::conect()->get('servicios_medicos','*',["AND"=>['indice_de_servicio_medico'=>$id_de_servicio_medico,'periodo'=>date('Y')]]);
+        $op=$servicio_medico['tipo_de_valor'];
+        if($op==2)
+        {
+            $etq_tipo_valor = 'Porcentaje %';
+        }
+        elseif ($op==1)
+        {
+            $etq_tipo_valor = 'D&oacute;lares $';
+
+        }
+        else
+        {
+            $etq_tipo_valor = 'D&iacute;a / s';
+        }
+        $input.= "    <input type='hidden' id='tipo_de_operacion' value=\"".$op."\">
+                    <div class='row form-group'><div class='col-5'><label for='valor_de_calculo' class='text-blue-d1'>".utf8_decode($etq_tipo_valor)."</label></div>";
+        if($establecimiento['convenio_vigente']==1)
+        {
+            $valor = $servicio_medico['valor_dentro_de_cobertura'];
+        }
+        else
+        {
+            $valor = $servicio_medico['valor_fuera_de_cobertura'];
+        }
+        $input.="<div class='col-7'><input type='number' class='form-control text-90' id='valor_de_calculo' value=\"".$valor."\"></div></div>";
+        $input.="<div class='row form-group'>
+                    <div class='col-7'><label for='subtotal' class='text-blue-d1'>Subtotal $</label></div>
+                    <div class='col-5'><input type='number' class='form-control text-90' id='subtotal'></div>
+                </div>";
+        $input.="<div class='row form-group'>
+                    <div class='col-7'><label for='valor_no_cubierto' class='text-blue-d1'>Valor no cubierto $</label></div>
+                    <div class='col-5'><input type='number' class='form-control text-90' id='valor_no_cubierto'></div>
+                </div>";
+        $input.="<div class='row form-group'>
+                    <div class='col-7'>
+                    <input type='button' class='btn btn-block btn-light-blue' value='Guardar' onclick=\"form1_guardar_nuevo_detalle_de_reembolso()\"></div>
+                    
+                </div>";
+
+        echo $input;
+    }
+
+    static function formulario1_agregar_nuevo_detalle_de_reembolso($id_de_usuario,$numero_de_documento,$indice_de_reembolso,$numero_de_factura,$fecha_de_factura,$indice_de_establecimiento,$indice_de_servicio_medico,$valor_de_calculo,$subtotal,$valor_no_cubierto,$tipo_de_operacion)
+    {
+        $saldo_a_cubrir = $subtotal - $valor_no_cubierto;
+
+        //OPERACION PARA PORCENTAJES
+        if($tipo_de_operacion==2)
+        {
+            $valor_copago = round(($saldo_a_cubrir - ($saldo_a_cubrir*($valor_de_calculo/100))),2);
+        }
+        //OPERACON PARA VALOR EN DOLARES
+        elseif($tipo_de_operacion==1)
+        {
+            $valor_copago = $saldo_a_cubrir - $valor_de_calculo;
+        }
+        else
+        {
+            $valor_copago = 0;
+        }
+        if(Conexion::conect()->insert('detalles_de_reembolso',[
+            'indice_de_reembolso_fk'=>$indice_de_reembolso,
+            'numero_de_factura' =>$numero_de_factura,
+            'indice_de_establecimiento_fk'=>$indice_de_establecimiento,
+            'indice_de_servicio_medico_fk'=>$indice_de_servicio_medico,
+            'fecha_de_factura'=>$fecha_de_factura,
+            'subtotal'=>$subtotal,
+            'valor_no_cubierto'=>$valor_no_cubierto,
+            'valor_copago'=>$valor_copago
+        ])){
+            Historial::nueva_actividad($id_de_usuario,'REEMBOLSOS','registro de nuevo detalle al reembolso '.$numero_de_documento);
+            $datos_de_encabezado_de_reembolso= Conexion::conect()->get('encabezado_de_reembolso','*',['indice_de_reembolso'=>$indice_de_reembolso]);
+            MovimientoDeUsuario::nuevo_movimiento($datos_de_encabezado_de_reembolso['numero_de_id_de_usuario_fk'],'NUEVO DETALLE DE REEMBOLSO',$numero_de_documento,0,$valor_copago);
+            echo "$(\"form\").html(\"<div class=\'text-dark-tp3\'><h3 class=\'text-success-d1 text-130\'>Detalle registrado</h3>Factura o detalle registrado exitosamente .</div>\")";
+        }
+        else
+        {
+            echo "$(\"form\").html(\"<div class=\'text-dark-tp3\'><h3 class=\'text-success-d1 text-130\'>Detalle no registrado</h3>Error al registrar detalle</div>\")";
+        }
+
+    }
+    static function generar_lista_de_detalles_de_reembolso($numero_de_documento)
+    {
+        $encabezado=Conexion::conect()->get('encabezado_de_reembolso','*',['numero_de_documento'=>$numero_de_documento]);
+        $tabla_de_detalles='';
+        $indice_de_reembolso = $encabezado['indice_de_reembolso'];
+        $data_detalle_de_reembolso=Conexion::conect()->select('detalles_de_reembolso','*',['indice_de_reembolso_fk'=>$indice_de_reembolso]);
+        $tabla_de_detalles.="<table class=\"table table-striped table-bordered table-hover brc-black-tp10 mb-0 text-grey text-90\">
+                        <thead class=\"brc-transparent\">
+                          <tr class=\"bgc-green-d2 text-white\">
+                            <th>
+                                    N&uacute;mero de Factura
+                            </th>
+                            <th>
+                                    Fecha de factura
+                            </th>
+                            <th>        
+                                    Subtotal
+                            </th>
+                             <th>        
+                                    Valor no cubierto
+                            </th>
+                             <th>        
+                                    Copago
+                            </th>
+                            <th></th>
+                          </tr>
+                        </thead>
+
+                        <tbody>";
+                        foreach ($data_detalle_de_reembolso as $reembolso)
+                        {
+                            $tabla_de_detalles.="<tr class=\"bgc-h-yellow-l3\">
+                            <td class=\"text-600 text-dark\">
+                                ".$reembolso['numero_de_factura']."
+                            </td>
+                            <td class=\"text-info-m1\">
+                                ".$reembolso['fecha_de_factura']."
+                            </td>
+                            <td class='text-success-d2'>
+                                $ ".$reembolso['subtotal']."   
+                            </td>
+                            <td class='text-success-d2'>
+                                $ ".$reembolso['valor_no_cubierto']."   
+                            </td>
+                            <td class='text-success-d2'>
+                                $ ".$reembolso['valor_copago']."   
+                            </td>
+                            <td class=\"text-center\">
+                              <a  class=\"btn btn-sm btn-red radius-round border-0 px-4\">
+                                <i class='fa fa-trash text-white'></i>
+                                </a>
+                            </td>
+                          </tr>
+                            ";
+                        }
+        $tabla_de_detalles.="</tbody>
+                      </table>";
+        echo $tabla_de_detalles;
     }
 }

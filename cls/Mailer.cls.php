@@ -27,7 +27,7 @@
                 $this->mail->isSMTP();                                            // Send using SMTP
                 $this->mail->Host       = 'mail.ingenio-soft.com';                    // Set the SMTP server to send through
                 $this->mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-                $this->mail->Username   = 'milton.guzman@ingenio-soft.com';                     // SMTP username
+                $this->mail->Username   = 'soporte@ingenio-soft.com';                     // SMTP username
                 $this->mail->Password   = 'Moctesuma_2020';                               // SMTP password
                 $this->mail->Port       = 26;
 

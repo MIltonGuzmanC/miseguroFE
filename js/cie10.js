@@ -129,7 +129,7 @@ function eliminar_cie(codigo_cie)
             $.ajax({
                 method : 'POST',
                 url : 'controllers/eliminar_cie.ctrl.php',
-                data :{'codigo__de_cie' : codigo_de_cie}
+                data :{'codigo_de_cie' : codigo_de_cie}
             }).done(function(response){
                 eval(response);
                 Swal.close();

@@ -39,8 +39,10 @@ class MovimientoDeUsuario
             $datos_de_titular_de_cuenta = Conexion::conect()->get('informacion_de_usuario','*',['numero_de_id_de_usuario'=>$datos_de_usuario['id_de_dependiente']]);
         }
         $movimientos_de_usuario = Conexion::conect()->select('movimientos_de_usuario','*',['AND'=>['periodo'=>date('Y'),'numero_de_id_de_usuario_fk'=>$datos_de_titular_de_cuenta['numero_de_id_de_usuario']]]);
+
         foreach ($movimientos_de_usuario as $movimientos)
         {
+
             $total_debe = $total_debe+$movimientos['debe'];
             $total_haber = $total_haber+$movimientos['haber'];
         }
@@ -48,3 +50,6 @@ class MovimientoDeUsuario
         return $saldo_total;
     }
 }
+
+//$prueba = MovimientoDeUsuario::retornar_saldo_de_usuario(1717003030);
+//echo $prueba;

@@ -4,17 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a06fa6d-6808-47a1-9bdf-176916333451" name="Default Changelist" comment="proyecto completo, realizando reembolsos formulario 1">
-      <change afterPath="$PROJECT_DIR$/cls/MovimientoDeUsuario.cls.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/formulario1_agregar_nuevo_detalle_de_reembolso.ctrl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/formulario1_generar_campo_de_descuento.ctrl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/generar_lista_de_detalles_de_reembolso.ctrl.php" afterDir="false" />
+    <list default="true" id="9a06fa6d-6808-47a1-9bdf-176916333451" name="Default Changelist" comment="reembolso de formulario 1 completo">
+      <change afterPath="$PROJECT_DIR$/controllers/eliminar_detalle_de_reembolso.ctrl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/procesar_reembolso.ctrl.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cls/Beneficiarios.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/Beneficiarios.cls.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cls/Mailer.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/Mailer.cls.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cls/MovimientoDeUsuario.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/MovimientoDeUsuario.cls.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cls/Reembolso.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/Reembolso.cls.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.ini.php" beforeDir="false" afterPath="$PROJECT_DIR$/config.ini.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/eliminar_cie.ctrl.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/eliminar_cie.ctrl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/cie10.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/cie10.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/reembolsos_y_creditos.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/reembolsos_y_creditos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reembolsos_y_creditos.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/reembolsos_y_creditos.view.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,7 +165,11 @@
       <workItem from="1612230737108" duration="6170000" />
       <workItem from="1612323678418" duration="4267000" />
       <workItem from="1612370990937" duration="11511000" />
-      <workItem from="1612463248983" duration="18785000" />
+      <workItem from="1612463248983" duration="19142000" />
+      <workItem from="1612785079061" duration="15928000" />
+      <workItem from="1612893003828" duration="6214000" />
+      <workItem from="1613017209999" duration="8022000" />
+      <workItem from="1613068989637" duration="1342000" />
     </task>
     <task id="LOCAL-00001" summary="adición de seguridad en puerto de DB">
       <created>1611020661408</created>
@@ -300,7 +304,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612328747960</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="reembolso de formulario 1 completo">
+      <created>1612676188320</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1612676188320</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -336,7 +347,8 @@
     <MESSAGE value="Seccion de servicios medicos y servicios medicos especiales completos" />
     <MESSAGE value="proyecto completo" />
     <MESSAGE value="proyecto completo, realizando reembolsos formulario 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="proyecto completo, realizando reembolsos formulario 1" />
+    <MESSAGE value="reembolso de formulario 1 completo" />
+    <option name="LAST_COMMIT_MESSAGE" value="reembolso de formulario 1 completo" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

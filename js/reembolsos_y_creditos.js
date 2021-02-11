@@ -83,6 +83,8 @@ function generar_nuevo_reembolso()
         });
     }
 }
+
+//ESTA FUNCION GENERA TODA LA ESTRUCTURA DEL REEMBOLSO
 function generar_formulario_de_detalles_de_reembolso(numero_de_documento)
 {
 
@@ -191,4 +193,54 @@ function generar_lista_de_detalles_de_reembolso(numero_de_documento)
     }).done(function(response){
         $("#div_detalles_de_reembolso").html(response);
     })
+}
+
+function eliminar_detalle_de_reembolso(ind_de_detalle)
+{
+    Swal.fire({
+        title: 'Est&aacute; segur@?',
+        text: "Esto elimina permanentemente este registro!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, eliminar',
+        cancelButtonText : 'No eliminar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                icon: 'info',
+                title: 'Eliminando',
+                text: 'Eliminando y revirtiendo reembolso...',
+                allowOutsideClick : false,
+                allowEscapeKey : false,
+                showConfirmButton : false
+            });
+            $.ajax({
+                method : 'POST',
+                url : 'controllers/eliminar_detalle_de_reembolso.ctrl.php',
+                data :{'indice_de_detalle' : ind_de_detalle}
+            }).done(function(response){
+                Swal.close();
+                eval(response);
+            })
+        }
+    })
+}
+
+function generar_nuevo_estado_de_reembolso(opcion_de_proceso,numero_de_documento)
+{
+    if(opcion_de_proceso!=='0')
+    {
+        $.ajax({
+            method : 'POST',
+            url : '/controllers/procesar_reembolso.ctrl.php',
+            data : {
+                'opcion_de_proceso':opcion_de_proceso,
+                'numero_de_documento': numero_de_documento
+            }
+        }).done(function(response){
+            eval(response);
+        })
+    }
 }

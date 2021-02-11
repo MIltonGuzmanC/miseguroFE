@@ -28,7 +28,7 @@
                 $this->mail->Host       = 'mail.ingenio-soft.com';                    // Set the SMTP server to send through
                 $this->mail->SMTPAuth   = true;                                   // Enable SMTP authentication
                 $this->mail->Username   = 'soporte@ingenio-soft.com';                     // SMTP username
-                $this->mail->Password   = 'Moctesuma_2020';                               // SMTP password
+                $this->mail->Password   = 'Onomatopeya_1313';                               // SMTP password
                 $this->mail->Port       = 26;
 
                 //SENDER RECEIVER SETUP
@@ -105,8 +105,8 @@
                                         <tr>
                                             <td>
                                                 <div class=\"text\" style=\"padding: 0 2.5em; text-align: center;\">
-                                                    <h2>".$this->titulo."</h2>
-                                                    <h4>".$this->mensaje."</h4>
+                                                    <h2>".utf8_decode($this->titulo)."</h2>
+                                                    <h4>".utf8_decode($this->mensaje)."</h4>
                                                     
                                                 </div>
                                             </td>

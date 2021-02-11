@@ -10,7 +10,7 @@ class Reembolso
     private $formulario_nuevo_reembolso,$data_reembolso,$beneficiario,$encabezado_de_reembolso,$data_de_usuario,$num_reembolsos,$id_de_usuario,$digitador,$mail,$etq_estado,$informacion_de_encabezado;
     private $id_de_administrador,$numero_de_documento,$enfermedad_preexistente,$tipo_de_reembolso,$codigo_de_grupo_de_cie,$cie10,$estado_de_reembolso,$formulario_de_reembolso;
     private $filtro,$data,$lista_de_reembolsos,$formulario_de_detalle_de_reembolsos;
-    private $item_formulario_1,$encabezado;
+    private $item_formulario_1,$encabezado,$saldo_de_usuario;
     static function  generar_datalist_de_usuarios()
     {
         $data = Conexion::conect()->select('informacion_de_usuario','*',['activar_usuario'=>1]);
@@ -208,11 +208,21 @@ class Reembolso
 
         if($this->estado_de_reembolso == 1)
         {
-            $this->etq_estado = "<span class=\"badge badge-warning\">Reembolso generado</span>";
+            $this->etq_estado = "<span class=\"badge badge-warning\">Reembolso generado</span>
+                                 <select id='operaciones_de_reembolso' class='ace-select text-dark-m1 bgc-default-l5 bgc-h-warning-l3 brc-default-m3 brc-h-warning-m1 text-80' onchange='generar_nuevo_estado_de_reembolso(this.value,\"".$this->numero_de_documento."\")'>
+                                        <option value='0'>Seleccione una acci&oacute;n</option>            
+                                        <option value='2'>Procesar reembolso</option>
+                                        <option value='3'>Rechazar reembolso</option>
+                                 </select>   
+                                ";
         }
         elseif ($this->estado_de_reembolso == 2)
         {
-            $this->etq_estado = "<span class=\"badge badge-success\">Reembolso procesado</span>";
+            $this->etq_estado = "<span class=\"badge badge-success\">Reembolso procesado</span>
+                                <select id='operaciones_de_reembolso' class='ace-select text-dark-m1 bgc-default-l5 bgc-h-warning-l3 brc-default-m3 brc-h-warning-m1 text-80' onchange='generar_nuevo_estado_de_reembolso(this.value,\"".$this->numero_de_documento."\")'>
+                                        <option value='0'>Seleccione una acci&oacute;n</option>     
+                                        <option value='4'>Entregar reembolso</option>
+                                 </select>   ";
         }
         elseif($this->estado_de_reembolso == 3)
         {
@@ -383,21 +393,38 @@ class Reembolso
         else
         {
             //SI EL PROCESO YA ESTÁ CERRADO, PROGRAMAR AQUI!!! LOS OTROS ESTADOS
+
         }
         return $this->formulario_de_detalle_de_reembolsos;
     }
 
-    //ESTA FUNCION GENERA LOS FORMULARIOS SEGUN EL TIPO DE REEMBOLSO
+    //ESTA FUNCION GENERA LOS FORMULARIOS SEGUN EL TIPO DE REEMBOLSO, PLASMAR AQUI LA IMPLEMENTACION DE LOS OTROS FORMULARIOS
     function generador_de_formulario($numero_de_documento)
     {
         $this->informacion_de_encabezado=Conexion::conect()->get('encabezado_de_reembolso','*',['numero_de_documento'=>$numero_de_documento]);
         $this->tipo_de_reembolso = $this->informacion_de_encabezado['tipo_de_reembolso'];
-        //FORMULARIO PARA REEMBOLSO TIPO NORMAL
-        if($this->tipo_de_reembolso=='1')
+        //VERIFICAR SI EL SALDO NO ES CERO PARA PROSEGUIR CON EL REEMBOLSO
+        $this->saldo_de_usuario = MovimientoDeUsuario::retornar_saldo_de_usuario($this->informacion_de_encabezado['numero_de_id_de_usuario_fk']);
+        if($this->saldo_de_usuario>0)
         {
-            $this->formulario_de_reembolso.="<a data-fancybox data-type=\"ajax\" href=\"#\" class=\"mx-2px btn radius-1 border-2 btn-xs btn-brc-tp btn-light-success btn-h-lighter-success btn-a-lighter-primary\" data-src=\"controllers/formulario1_generar_nuevo_renglon_de_item.ctrl.php?numero_de_documento=".$numero_de_documento."\" href=\"javascript:;\">
+            //1. FORMULARIO PARA REEMBOLSO TIPO NORMAL
+            if($this->tipo_de_reembolso=='1')
+            {
+                $this->formulario_de_reembolso.="<a data-fancybox data-type=\"ajax\" href=\"#\" class=\"mx-2px btn radius-1 border-2 btn-xs btn-brc-tp btn-light-success btn-h-lighter-success btn-a-lighter-primary\" data-src=\"controllers/formulario1_generar_nuevo_renglon_de_item.ctrl.php?numero_de_documento=".$numero_de_documento."\" href=\"javascript:;\">
         <i class=\"fa fa-plus text-primary-l1\"></i>Agregar item</a>";
+            }
         }
+        else
+        {
+            $this->formulario_de_reembolso.="<div role=\"alert\" class=\"alert alert-warning bgc-warning-l4 brc-warning-m3 border-2 d-flex align-items-center text-80\">
+                      <i class=\"fas fa-exclamation-circle mr-3 fa-2x text-orange\"></i>
+
+                      <div class=\"text-dark-tp2\">
+                        Saldo no disponible para realizar peticiones de reembolo
+                        
+                    </div>";
+        }
+
         return $this->formulario_de_reembolso;
 
     }
@@ -547,25 +574,38 @@ class Reembolso
         {
             $valor_copago = 0;
         }
-        if(Conexion::conect()->insert('detalles_de_reembolso',[
-            'indice_de_reembolso_fk'=>$indice_de_reembolso,
-            'numero_de_factura' =>$numero_de_factura,
-            'indice_de_establecimiento_fk'=>$indice_de_establecimiento,
-            'indice_de_servicio_medico_fk'=>$indice_de_servicio_medico,
-            'fecha_de_factura'=>$fecha_de_factura,
-            'subtotal'=>$subtotal,
-            'valor_no_cubierto'=>$valor_no_cubierto,
-            'valor_copago'=>$valor_copago
-        ])){
-            Historial::nueva_actividad($id_de_usuario,'REEMBOLSOS','registro de nuevo detalle al reembolso '.$numero_de_documento);
-            $datos_de_encabezado_de_reembolso= Conexion::conect()->get('encabezado_de_reembolso','*',['indice_de_reembolso'=>$indice_de_reembolso]);
-            MovimientoDeUsuario::nuevo_movimiento($datos_de_encabezado_de_reembolso['numero_de_id_de_usuario_fk'],'NUEVO DETALLE DE REEMBOLSO',$numero_de_documento,0,$valor_copago);
-            echo "$(\"form\").html(\"<div class=\'text-dark-tp3\'><h3 class=\'text-success-d1 text-130\'>Detalle registrado</h3>Factura o detalle registrado exitosamente .</div>\")";
+
+        //EVALUAR SI EL SALDO ES SUFICIENTE PARA LA OPERACION DE REEMBOLSO
+        $datos_de_encabezado_de_reembolso= Conexion::conect()->get('encabezado_de_reembolso','*',['indice_de_reembolso'=>$indice_de_reembolso]);
+        $saldo_de_usuario = MovimientoDeUsuario::retornar_saldo_de_usuario($datos_de_encabezado_de_reembolso['numero_de_id_de_usuario_fk']);
+        if($saldo_de_usuario>=$saldo_a_cubrir)
+        {
+            if(Conexion::conect()->insert('detalles_de_reembolso',[
+                'indice_de_reembolso_fk'=>$indice_de_reembolso,
+                'numero_de_factura' =>$numero_de_factura,
+                'indice_de_establecimiento_fk'=>$indice_de_establecimiento,
+                'indice_de_servicio_medico_fk'=>$indice_de_servicio_medico,
+                'fecha_de_factura'=>$fecha_de_factura,
+                'subtotal'=>$subtotal,
+                'valor_no_cubierto'=>$valor_no_cubierto,
+                'valor_cubierto'=>$subtotal-$valor_no_cubierto,
+                'valor_copago'=>$valor_copago
+            ])){
+                Historial::nueva_actividad($id_de_usuario,'REEMBOLSOS','registro de nuevo detalle al reembolso '.$numero_de_documento);
+                MovimientoDeUsuario::nuevo_movimiento($datos_de_encabezado_de_reembolso['numero_de_id_de_usuario_fk'],'NUEVA FACTURA AGREGADA A REEMBOLSO',$numero_de_factura,0,$saldo_a_cubrir);
+
+                echo "$(\"form\").html(\"<div class=\'text-dark-tp3\'><h3 class=\'text-success-d1 text-130\'>Detalle registrado</h3>Factura o detalle registrado exitosamente .</div>\")";
+            }
+            else
+            {
+                echo "$(\"form\").html(\"<div class=\'text-dark-tp3\'><h3 class=\'text-success-d1 text-130\'>Detalle no registrado</h3>Error al registrar detalle</div>\")";
+            }
         }
         else
         {
-            echo "$(\"form\").html(\"<div class=\'text-dark-tp3\'><h3 class=\'text-success-d1 text-130\'>Detalle no registrado</h3>Error al registrar detalle</div>\")";
+            echo "$(\"form\").html(\"<div class=\'text-dark-tp3\'><h3 class=\'text-success-d1 text-130\'>Detalle no registrado</h3>saldo insuficiente para realizar esta operacion </div>\")";
         }
+
 
     }
     static function generar_lista_de_detalles_de_reembolso($numero_de_documento)
@@ -588,6 +628,9 @@ class Reembolso
                             </th>
                              <th>        
                                     Valor no cubierto
+                            </th>
+                            <th>
+                                <b>Valor cubierto</b>
                             </th>
                              <th>        
                                     Copago
@@ -612,11 +655,14 @@ class Reembolso
                             <td class='text-success-d2'>
                                 $ ".$reembolso['valor_no_cubierto']."   
                             </td>
+                            <td class='text-primary-d2'>
+                                $ ".$reembolso['valor_cubierto']."   
+                            </td>
                             <td class='text-success-d2'>
                                 $ ".$reembolso['valor_copago']."   
                             </td>
                             <td class=\"text-center\">
-                              <a  class=\"btn btn-sm btn-red radius-round border-0 px-4\">
+                              <a  class=\"btn btn-sm btn-red radius-round border-0 px-4\" onclick='eliminar_detalle_de_reembolso(".$reembolso['indice_de_detalle'].")'>
                                 <i class='fa fa-trash text-white'></i>
                                 </a>
                             </td>
@@ -627,4 +673,88 @@ class Reembolso
                       </table>";
         echo $tabla_de_detalles;
     }
+
+    //FUNCION QUE ELIMINA UN DETALLE DE REEMBOLSO
+    static function eliminar_detalle_de_reembolso($usuario,$indice_de_detalle)
+    {
+        $detalle = Conexion::conect()->get('detalles_de_reembolso','*',['indice_de_detalle'=>$indice_de_detalle]);
+
+        $reembolso = Conexion::conect()->get('encabezado_de_reembolso','*',['indice_de_reembolso'=>$detalle['indice_de_reembolso_fk']]);
+        $valor_de_retorno = $detalle['subtotal']-$detalle['valor_no_cubierto'];
+        if($reembolso['estado_de_reclamo']==1)
+        {
+            if(Conexion::conect()->delete('detalles_de_reembolso',['indice_de_detalle'=>$indice_de_detalle]))
+            {
+                Historial::nueva_actividad($usuario,'DETALLES DE REEMBOLSO','SE ELIMINA UN ITEM AL REEMBOLSO :'.$reembolso['numero_de_documento']);
+                MovimientoDeUsuario::nuevo_movimiento($reembolso['numero_de_id_de_usuario_fk'],'SALDO REVERTIDO POR ELIMINACION DE FACTURA',$detalle['numero_de_factura'],$valor_de_retorno,0);
+
+                echo "generar_formulario_de_detalles_de_reembolso('".$reembolso['numero_de_documento']."')";
+            }
+        }
+        else
+        {
+            echo "Swal.fire({
+                            icon: 'error',
+                            title: 'Error al borrar',
+                            text: 'No se puede eliminar una factura de un reembolso ya procesado',
+                            allowOutsideClick : false,
+                            allowEscapeKey : false,
+                            showConfirmButton : true
+                        });";
+        }
+
+    }
+
+    //FUNCION QUE PROCESA UN REEMBOLSO
+    static function generar_nuevo_estado_de_reembolso($opcion,$numero_de_documento)
+    {
+        //RECUPERAR DATOS DE ENCABEZADO
+        $encabezado=Conexion::conect()->get('encabezado_de_reembolso','*',['numero_de_documento'=>$numero_de_documento]);
+
+        //RECUPERAR DETALLES DE REEMBOLSO
+        $detalles_de_reembolso = Conexion::conect()->select('detalles_de_reembolso','*',['indice_de_reembolso_fk'=>$encabezado['indice_de_reembolso']]);
+        $sumatoria_subtotal = 0;
+        $sumatoria_valor_no_cubierto = 0;
+        $sumatoria_valor_cubierto = 0;
+        $sumatoria_valor_copago = 0;
+        $deducible = 0;
+        switch ($opcion){
+            case 2:
+                if(Conexion::conect()->has('encabezado_de_reembolso',['AND'=>['periodo'=>date('Y'),'numero_de_id_de_usuario_fk'=>$encabezado['numero_de_id_de_usuario_fk'],'codigo_de_cie'=>$encabezado['codigo_de_cie']]]))
+                {
+                    $deducible = 20;
+                }
+                else{
+                    $deducible = 0;
+                }
+                foreach ($detalles_de_reembolso as $item)
+                {
+                    $sumatoria_subtotal = $sumatoria_subtotal + $item['subtotal'];
+                    $sumatoria_valor_no_cubierto = $sumatoria_valor_no_cubierto + $item['valor_no_cubierto'];
+                    $sumatoria_valor_cubierto = $sumatoria_valor_cubierto + $item['valor_cubierto'];
+                    $sumatoria_valor_copago = $sumatoria_valor_copago + $item['valor_copago'];
+                }
+                if(Conexion::conect()->update('encabezado_de_reembolso',[
+                    'estado_de_reclamo'=>$opcion,
+                    'valor_del_reclamo'=>$sumatoria_subtotal,
+                    'deducible'=>$deducible,
+                    'copago_1'=>$sumatoria_valor_copago,
+                    'copago_2'=>0,
+                    'valor_cubierto'=>$sumatoria_valor_cubierto,
+                    'valor_no_cubierto'=>$sumatoria_valor_no_cubierto,
+
+                ],['indice_de_reembolso'=>$encabezado['indice_de_reembolso']])){
+                    echo "Swal.fire({
+                            icon: 'success',
+                            title: 'Reembolso procesado',
+                            text: 'Reembolso cerrado y procesado correctamente',
+                            allowOutsideClick : false,
+                            allowEscapeKey : false,
+                            showConfirmButton : true
+                        });";
+                }
+                break;
+        }
+    }
+
 }

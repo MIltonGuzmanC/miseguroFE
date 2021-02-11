@@ -7,5 +7,5 @@ if(!isset($_SESSION['usuario']['id_de_usuario']))
 else{
     include_once '../cls/Cie10.cls.php';
     $cie = new Cie10();
-    $cie->eliminar_cie($_SESSION['usuario']['id_de_usuario'],$_POST['codigo__de_cie']);
+    $cie->eliminar_cie($_SESSION['usuario']['id_de_usuario'],$_POST['codigo_de_cie']);
 }

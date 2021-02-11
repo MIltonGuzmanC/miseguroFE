@@ -77,7 +77,6 @@
     <div class="m-1px"></div>
     <div class="card" id="div_formulario_nuevo_reembolso">
 
-    </div>
 </div>
 </body>
 

@@ -10,7 +10,7 @@ class Reembolso
     private $formulario_nuevo_reembolso,$data_reembolso,$beneficiario,$encabezado_de_reembolso,$data_de_usuario,$num_reembolsos,$id_de_usuario,$digitador,$mail,$etq_estado,$informacion_de_encabezado;
     private $id_de_administrador,$numero_de_documento,$enfermedad_preexistente,$tipo_de_reembolso,$codigo_de_grupo_de_cie,$cie10,$estado_de_reembolso,$formulario_de_reembolso;
     private $filtro,$data,$lista_de_reembolsos,$formulario_de_detalle_de_reembolsos;
-    private $item_formulario_1,$encabezado,$saldo_de_usuario;
+    private $item_formulario_1,$encabezado,$saldo_de_usuario,$boton_imprimir,$data_de_cie;
     static function  generar_datalist_de_usuarios()
     {
         $data = Conexion::conect()->select('informacion_de_usuario','*',['activar_usuario'=>1]);
@@ -197,7 +197,7 @@ class Reembolso
         }
     }
 
-    //ESTA FUNCION GENERA TODA LA FUNCIONALIDAD DEL FORMULARIO, ENCABEZADO Y DETALLE SY EL TIPO DE
+    //ESTA FUNCION GENERA TODA LA FUNCIONALIDAD DEL FORMULARIO, ENCABEZADO Y DETALLES Y EL TIPO DE
     //FORMULARIO, ASI COMO SI ES POSIBLE EDITARLO O NO
     function generar_formulario_de_detalles_de_reembolso($numero_de_documento)
     {
@@ -205,6 +205,7 @@ class Reembolso
         $this->data_reembolso = Conexion::conect()->get('encabezado_de_reembolso','*',['numero_de_documento'=>$this->numero_de_documento]);
         $this->data_de_usuario =Conexion::conect()->get('informacion_de_usuario','*',['numero_de_id_de_usuario'=>$this->data_reembolso['numero_de_id_de_usuario_fk']]);
         $this->estado_de_reembolso = $this->data_reembolso['estado_de_reclamo'];
+        $this->data_de_cie = Conexion::conect()->get('cie','*',['codigo_de_cie'=>$this->data_reembolso['codigo_de_cie']]);
 
         if($this->estado_de_reembolso == 1)
         {
@@ -233,13 +234,14 @@ class Reembolso
             $this->etq_estado = "<span class=\"badge badge-primary\">Reembolso entregado </span>";
         }
         $this->encabezado_de_reembolso .="<div class='row'>
-            <div class=\"col-12 cards-container\" id=\"card-container-2\">
+            <div class=\"col-12 cards-container text-90\" id=\"card-container-2\">
                   <div class=\"card border-0 shadow-sm radius-0\" id=\"card-2\" draggable=\"false\">
                     <div class=\"card-header bgc-primary-d1\">
                       <h5 class=\"card-title text-white\">
                         <i class=\"fa fa-table mr-2px\"></i>
                         N&uacute;mero de reembolso :  ".$this->numero_de_documento." 
                       </h5>
+                      <span><a class='btn btn-orange rounded-circle' onclick='generar_reporte_de_reembolso(\"".$this->numero_de_documento."\")'><i class='text-white fa fa-print'></i></a></span>
                     </div>
 
                     <div class=\"card-body bgc-transparent p-0 border-1 brc-primary-m3 border-t-0\">
@@ -255,12 +257,18 @@ class Reembolso
                               <i class=\"fa fa-user text-orange-d1 mr-1px\"></i>
                               Beneficiario
                             </th>
-
+                            <th class=\"d-none d-lg-table-cell mr-1px\">
+                            <i class=\"fa fa-hospital text-blue-d1 mr-1px\"></i>
+                              Enfermedad / CIE10
+                            </th>
+                            
                             <th class=\"d-none d-lg-table-cell mr-1px\">
                             <i class=\"fa fa-user text-orange-d1 mr-1px\"></i>
                               Estado de reembolso
                             </th>
+                            
                           </tr>
+                          
                         </thead>
 
                         <tbody>
@@ -269,10 +277,15 @@ class Reembolso
                             <td>
                               <a href=\"#\" class=\"text-primary-d2\" draggable=\"false\">".utf8_decode($this->data_de_usuario['apellidos'])." ".utf8_decode($this->data_de_usuario['nombres'])."</a>
     </td>
+                            <td>
+                                ".$this->data_reembolso['codigo_de_cie']." " .utf8_decode($this->data_de_cie['nombre_de_cie'])."
+                            </td>
                             <td class=\"d-none d-lg-table-cell\">
                                     ".$this->etq_estado."
                             </td>
+                            
                           </tr>
+                          
                         </tbody>
                       </table>
                     </div><!-- /.card-body -->
@@ -332,8 +345,9 @@ class Reembolso
                                                         <th>Estado</th>
                                                         <th></th>
                                                       </tr>
+                                                    
                                                     </thead>
-                            
+                                                        
                                                     <tbody>";
         foreach ($this->data as $this->data_reembolso)
         {
@@ -407,12 +421,24 @@ class Reembolso
         $this->saldo_de_usuario = MovimientoDeUsuario::retornar_saldo_de_usuario($this->informacion_de_encabezado['numero_de_id_de_usuario_fk']);
         if($this->saldo_de_usuario>0)
         {
+            //AQUI PROGRAMAR L LA FUNCIONALIDAD DE LOS ESTADOS Y  FORMULARIOS
+
             //1. FORMULARIO PARA REEMBOLSO TIPO NORMAL
             if($this->tipo_de_reembolso=='1')
             {
                 $this->formulario_de_reembolso.="<a data-fancybox data-type=\"ajax\" href=\"#\" class=\"mx-2px btn radius-1 border-2 btn-xs btn-brc-tp btn-light-success btn-h-lighter-success btn-a-lighter-primary\" data-src=\"controllers/formulario1_generar_nuevo_renglon_de_item.ctrl.php?numero_de_documento=".$numero_de_documento."\" href=\"javascript:;\">
         <i class=\"fa fa-plus text-primary-l1\"></i>Agregar item</a>";
             }
+            //3. FORMULARIO PARA REEMBOLSO COORDINACION DE BENEFICIOS
+            if($this->tipo_de_reembolso=='3')
+            {
+                $this->formulario_de_reembolso.="<a data-fancybox data-type=\"ajax\" href=\"#\" class=\"mx-2px btn radius-1 border-2 btn-xs btn-brc-tp btn-light-success btn-h-lighter-success btn-a-lighter-primary\" data-src=\"controllers/formulario3_generar_formulario_de_beneficio.ctrl.php?numero_de_documento=".$numero_de_documento."\" href=\"javascript:;\">
+        <i class=\"fa fa-paperclip text-primary-l1\"></i> Agregar detalle de beneficio</a>";
+
+            }
+
+
+
         }
         else
         {
@@ -428,7 +454,7 @@ class Reembolso
         return $this->formulario_de_reembolso;
 
     }
-    //FUNCION QUE GENERA UN NUEVO RENGLON DE ITEM PARA AGREGAR AL FOMRULARIO DE TIPO NORMAL
+    //FUNCION QUE GENERA UN NUEVO RENGLON DE ITEM PARA AGREGAR AL FORMULARIO 1  DE TIPO NORMAL
     function agregar_item_formulario_1($numero_de_documento)
     {
         $this->numero_de_documento = $numero_de_documento;
@@ -440,7 +466,7 @@ class Reembolso
                                         <div class='row form-group'>
                                            <div class='col-7'><label for='numero_de_factura' class='text-blue-d1'>N&uacute;mero de factura </label></div>
                                             <div class='col-4'>
-                                                <input type='number' class='form-control text-90' id='numero_de_factura' >
+                                                <input type='number' class='form-control text-90' id='numero_de_factura' min='1'>
                                             </div>
                                         </div>    
                                         <div class='row form-group'>
@@ -468,13 +494,55 @@ class Reembolso
                                     </form></div>";
         echo $this->item_formulario_1;
     }
+    //FUNCION QUE GENERA EL FORMULARIO DE REEMBOLSO PARA COORDINACION DE BENEFICIOS TIPO 3
+    function agregar_reembolso_formulario_3($numero_de_documento)
+    {
+        $this->numero_de_documento = $numero_de_documento;
+        $this->encabezado = Conexion::conect()->get('encabezado_de_reembolso','*',['numero_de_documento'=>$this->numero_de_documento]);
+        $this->item_formulario_1 = "<div class='card-main'>
+                                    <form class='form'>
+                                       <input type='hidden' id='numero_de_documento' value=\"".$this->numero_de_documento."\">
+                                       <input type='hidden' id='indice_de_reembolso' value=\"".$this->encabezado['indice_de_reembolso']."\">
+                                        <div class='row form-group'>
+                                           <div class='col-5'><label for='numero_de_factura' class='text-blue-d1'>N&uacute;mero de factura </label></div>
+                                            <div class='col-7'>
+                                                <input type='number' class='form-control text-90' id='numero_de_factura' min='1'>
+                                            </div>
+                                        </div>    
+                                        <div class='row form-group'>
+                                           <div class='col-5'><label for='fecha_de_factura' class='text-blue-d1'>Fecha de factura </label></div>
+                                            <div class='col-7'>
+                                                <input type='date' class='form-control text-90' id='fecha_de_factura'>
+                                            </div>
+                                        </div> 
+                                        <div class='row form-group'>
+                                            <div class='col-5'><label for='indice_de_servicio_medico' class='text-blue-d1'>Servicio </label></div>
+                                            <div class='col-7'>
+                                               ".self::generar_lista_de_servicios_especiales()."
+                                            </div>
+                                        </div>
+                                        <div class='row form-group'>
+                                            <div class='col-5'><label for='valor_de_cobertura' class='text-blue-d1'>Valor de cobertura $</label></div>
+                                            <div class='col-7'>
+                                               <input type='number' min='1' id='valor_de_cobertura' class='form-control text-90'>
+                                            </div>
+                                        </div>   
+                                        <div class='row form-group'>
+                                            <div class='col-12'>
+                                                <input type='button' class='btn btn-block btn-light-blue' value='Guardar' onclick=\"form3_guardar_reembolso()\"></div>
+                                            </div>
+                                        </div>
+                                      
+                                    </form></div>";
+        echo $this->item_formulario_1;
+    }
 
     //FUNCION QUE GENERA UNA LISTA DE CLINICAS Y ESTABLECIMIENTOS
     static function  generar_lista_de_establecimientos()
     {
         $data_de_establecimientos = Conexion::conect()->select('establecimiento_con_convenio','*',['ORDER'=>'convenio_vigente']);
         $lista_de_establecimientos='';
-        $lista_de_establecimientos.="<select class='form-control text-90' id='indice_de_establecimiento' onchange='f1_generar_campo_de_descuento()'>";
+        $lista_de_establecimientos.="<select class='form-control text-80' id='indice_de_establecimiento' onchange='f1_generar_campo_de_descuento()'>";
         $lista_de_establecimientos.="<option value='0'>Seleccionar</option>";
             foreach ($data_de_establecimientos as $establecimiento)
             {
@@ -486,7 +554,7 @@ class Reembolso
                 {
                     $etq_convenio = 'NO';
                 }
-                $lista_de_establecimientos.="<option value=\"".$establecimiento['indice_de_establecimiento']."\">".utf8_decode($establecimiento['nombre_de_establecimiento'])." ¿Tiene Convenio? ".$etq_convenio."</option>";
+                $lista_de_establecimientos.="<option value=\"".$establecimiento['indice_de_establecimiento']."\">".utf8_decode($establecimiento['nombre_de_establecimiento'])." ¿ Tiene Convenio ? :".$etq_convenio."</option>";
             }
         $lista_de_establecimientos.="</select>";
         return $lista_de_establecimientos;
@@ -541,11 +609,11 @@ class Reembolso
         $input.="<div class='col-7'><input type='number' class='form-control text-90' id='valor_de_calculo' value=\"".$valor."\"></div></div>";
         $input.="<div class='row form-group'>
                     <div class='col-7'><label for='subtotal' class='text-blue-d1'>Subtotal $</label></div>
-                    <div class='col-5'><input type='number' class='form-control text-90' id='subtotal'></div>
+                    <div class='col-5'><input type='number' min='1' class='form-control text-90' id='subtotal'></div>
                 </div>";
         $input.="<div class='row form-group'>
                     <div class='col-7'><label for='valor_no_cubierto' class='text-blue-d1'>Valor no cubierto $</label></div>
-                    <div class='col-5'><input type='number' class='form-control text-90' id='valor_no_cubierto'></div>
+                    <div class='col-5'><input type='number' min='1' class='form-control text-90' id='valor_no_cubierto'></div>
                 </div>";
         $input.="<div class='row form-group'>
                     <div class='col-7'>
@@ -555,7 +623,7 @@ class Reembolso
 
         echo $input;
     }
-
+    //FUNCION QUE AGREGA UN DETALLE DE REEMBOLSO PARA REEMBOLSOS NORMALES
     static function formulario1_agregar_nuevo_detalle_de_reembolso($id_de_usuario,$numero_de_documento,$indice_de_reembolso,$numero_de_factura,$fecha_de_factura,$indice_de_establecimiento,$indice_de_servicio_medico,$valor_de_calculo,$subtotal,$valor_no_cubierto,$tipo_de_operacion)
     {
         $saldo_a_cubrir = $subtotal - $valor_no_cubierto;
@@ -605,9 +673,47 @@ class Reembolso
         {
             echo "$(\"form\").html(\"<div class=\'text-dark-tp3\'><h3 class=\'text-success-d1 text-130\'>Detalle no registrado</h3>saldo insuficiente para realizar esta operacion </div>\")";
         }
-
-
     }
+
+    //FUNCION QUE AGREGA UN DETALLE DE REEMBOLSO PARA REEMBOLSOS POR COORDINACION
+    static function formulario3_agregar_nuevo_detalle_de_reembolso($id_de_usuario,$numero_de_documento,$indice_de_reembolso,$numero_de_factura,$fecha_de_factura,$indice_de_servicio_medico,$valor_de_cobertura)
+    {
+        $saldo_a_cubrir = $valor_de_cobertura;
+        $valor_copago = 0;
+
+        //EVALUAR SI EL SALDO ES SUFICIENTE PARA LA OPERACION DE REEMBOLSO
+        $datos_de_encabezado_de_reembolso= Conexion::conect()->get('encabezado_de_reembolso','*',['indice_de_reembolso'=>$indice_de_reembolso]);
+        $saldo_de_usuario = MovimientoDeUsuario::retornar_saldo_de_usuario($datos_de_encabezado_de_reembolso['numero_de_id_de_usuario_fk']);
+        if($saldo_de_usuario>=$saldo_a_cubrir)
+        {
+            if(Conexion::conect()->insert('detalles_de_reembolso',[
+                'indice_de_reembolso_fk'=>$indice_de_reembolso,
+                'numero_de_factura' =>$numero_de_factura,
+                'indice_de_establecimiento_fk'=>1,
+                'indice_de_servicio_medico_fk'=>$indice_de_servicio_medico,
+                'fecha_de_factura'=>$fecha_de_factura,
+                'subtotal'=>0,
+                'valor_no_cubierto'=>0,
+                'valor_cubierto'=>$saldo_a_cubrir,
+                'valor_copago'=>$valor_copago,
+
+            ])){
+                Historial::nueva_actividad($id_de_usuario,'REEMBOLSOS','registro de nuevo detalle al reembolso '.$numero_de_documento);
+                MovimientoDeUsuario::nuevo_movimiento($datos_de_encabezado_de_reembolso['numero_de_id_de_usuario_fk'],'NUEVO REEMBOLSO POR COORDINACION ',$numero_de_factura,0,$saldo_a_cubrir);
+
+                echo "$(\"form\").html(\"<div class=\'text-dark-tp3\'><h3 class=\'text-success-d1 text-130\'>Detalle registrado</h3>Factura o detalle registrado exitosamente .</div>\")";
+            }
+            else
+            {
+                echo "$(\"form\").html(\"<div class=\'text-dark-tp3\'><h3 class=\'text-success-d1 text-130\'>Detalle no registrado</h3>Error al registrar detalle</div>\")";
+            }
+        }
+        else
+        {
+            echo "$(\"form\").html(\"<div class=\'text-dark-tp3\'><h3 class=\'text-success-d1 text-130\'>Detalle no registrado</h3>saldo insuficiente para realizar esta operacion </div>\")";
+        }
+    }
+
     static function generar_lista_de_detalles_de_reembolso($numero_de_documento)
     {
         $encabezado=Conexion::conect()->get('encabezado_de_reembolso','*',['numero_de_documento'=>$numero_de_documento]);
@@ -717,12 +823,23 @@ class Reembolso
         $sumatoria_valor_no_cubierto = 0;
         $sumatoria_valor_cubierto = 0;
         $sumatoria_valor_copago = 0;
-        $deducible = 0;
+        $numero_de_documento=$encabezado['numero_de_documento'];
+        
         switch ($opcion){
             case 2:
-                if(Conexion::conect()->has('encabezado_de_reembolso',['AND'=>['periodo'=>date('Y'),'numero_de_id_de_usuario_fk'=>$encabezado['numero_de_id_de_usuario_fk'],'codigo_de_cie'=>$encabezado['codigo_de_cie']]]))
+                $recurrencia=Conexion::conect()->count('encabezado_de_reembolso',['AND'=>['periodo'=>date('Y'),'numero_de_id_de_usuario_fk'=>$encabezado['numero_de_id_de_usuario_fk'],'codigo_de_cie'=>$encabezado['codigo_de_cie']]]);
+               
+                if($recurrencia==1)
                 {
-                    $deducible = 20;
+                    if($encabezado['tipo_de_reembolso']=='1')
+                    {
+                        $deducible = 20;
+                    }
+                    else
+                    {
+                        $deducible =0;
+                    }
+
                 }
                 else{
                     $deducible = 0;
@@ -742,6 +859,7 @@ class Reembolso
                     'copago_2'=>0,
                     'valor_cubierto'=>$sumatoria_valor_cubierto,
                     'valor_no_cubierto'=>$sumatoria_valor_no_cubierto,
+                    'total_de_reembolso'=>$sumatoria_valor_cubierto
 
                 ],['indice_de_reembolso'=>$encabezado['indice_de_reembolso']])){
                     echo "Swal.fire({
@@ -751,10 +869,25 @@ class Reembolso
                             allowOutsideClick : false,
                             allowEscapeKey : false,
                             showConfirmButton : true
-                        });";
+                        });
+                        generar_reporte_de_reembolso(\"".$numero_de_documento."\");";
                 }
                 break;
         }
     }
 
+    //FUNCION QUE GENERA UNA LISTA DE SERVICIOS ESPECIALES
+    static function  generar_lista_de_servicios_especiales()
+    {
+        $data_servicios_especiales = Conexion::conect()->select('servicios_medicos_especiales','*',['ORDER'=>'servicio_medico']);
+        $lista_de_servicios='';
+        $lista_de_servicios.="<select class='form-control text-80' id='indice_de_servicio_medico'>";
+        $lista_de_servicios.="<option value='0'>Seleccione</option>";
+        foreach ($data_servicios_especiales as $servicio)
+        {
+            $lista_de_servicios.="<option value=\"".$servicio['indice_de_servicio_medico']."\">".utf8_decode($servicio['servicio_medico'])."</option>";
+        }
+        $lista_de_servicios.="</select>";
+        return $lista_de_servicios;
+    }
 }

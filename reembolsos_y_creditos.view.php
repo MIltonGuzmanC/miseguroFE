@@ -23,32 +23,32 @@
     <!-- include common vendor stylesheets & fontawesome -->
     <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
 
-    <link rel="stylesheet" type="text/css" href="node_modules/@fortawesome/fontawesome-free/css/fontawesome.css">
-    <link rel="stylesheet" type="text/css" href="node_modules/@fortawesome/fontawesome-free/css/regular.css">
-    <link rel="stylesheet" type="text/css" href="node_modules/@fortawesome/fontawesome-free/css/brands.css">
-    <link rel="stylesheet" type="text/css" href="node_modules/@fortawesome/fontawesome-free/css/solid.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/@fortawesome/fontawesome-free/css/fontawesome.css" media="all">
+    <link rel="stylesheet" type="text/css" href="node_modules/@fortawesome/fontawesome-free/css/regular.css" media="all">
+    <link rel="stylesheet" type="text/css" href="node_modules/@fortawesome/fontawesome-free/css/brands.css" media="all">
+    <link rel="stylesheet" type="text/css" href="node_modules/@fortawesome/fontawesome-free/css/solid.css" media="all">
 
 
 
     <!-- include vendor stylesheets used in "More Elements" page. see "/views//pages/partials/form-more/@vendor-stylesheets.hbs" -->
-    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap-star-rating/css/star-rating.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap-star-rating/css/star-rating.css" media="all">
 
-    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap-select/dist/css/bootstrap-select.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap-select/dist/css/bootstrap-select.css" media="all">
 
-    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap-duallistbox/dist/bootstrap-duallistbox.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap-duallistbox/dist/bootstrap-duallistbox.css" media="all">
 
 
-    <link rel="stylesheet" type="text/css" href="node_modules/select2/dist/css/select2.css">
-    <link rel="stylesheet" type="text/css" href="node_modules/chosen-js/chosen.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/select2/dist/css/select2.css" media="all">
+    <link rel="stylesheet" type="text/css" href="node_modules/chosen-js/chosen.css" media="all">
 
 
     <!-- include fonts -->
-    <link rel="stylesheet" type="text/css" href="dist/css/ace-font.css">
+    <link rel="stylesheet" type="text/css" href="dist/css/ace-font.css" media="all">
 
 
 
     <!-- ace.css -->
-    <link rel="stylesheet" type="text/css" href="dist/css/ace.css">
+    <link rel="stylesheet" type="text/css" href="dist/css/ace.css" media="all">
 
 
     <!-- "More Elements" page styles, specific to this page for demo only -->
@@ -113,7 +113,7 @@
 <script src="views/pages/form-more/@page-script.js"></script>
 
 <script src="js/reembolsos_y_creditos.js"> </script>
-</body>
+<script src="js/print.js" ></script>
 
 </html>
 

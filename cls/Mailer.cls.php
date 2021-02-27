@@ -25,11 +25,11 @@
 
                 //$this->mail->SMTPDebug = 3;
                 $this->mail->isSMTP();                                            // Send using SMTP
-                $this->mail->Host       = 'mail.ingenio-soft.com';                    // Set the SMTP server to send through
+                $this->mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
                 $this->mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-                $this->mail->Username   = 'soporte@ingenio-soft.com';                     // SMTP username
-                $this->mail->Password   = 'Onomatopeya_1313';                               // SMTP password
-                $this->mail->Port       = 26;
+                $this->mail->Username   = 'milton.guzman@gmail.com';                     // SMTP username
+                $this->mail->Password   = 'Moctesuma_2020';                               // SMTP password
+                $this->mail->Port       = 587;
 
                 //SENDER RECEIVER SETUP
                 $this->mail->setFrom($this->from,$this->from_name);
@@ -128,4 +128,4 @@
 	}
 
 	//$test = new Mailer;
-	//$test->enviar_correo('milton@ingenio-sot.com','Milton Gmail','milton.guzman@ingenio-soft.com','Milton Hotmail','Mensaje de prueba','Este es un <b>Mensaje de prueba</b>');
+	//$test->enviar_correo('milton@ingenio-sot.com','Milton Gmail','milton.guzman@hotmail.com','Milton Hotmail','Mensaje de prueba','Este es un <b>Mensaje de prueba</b>');

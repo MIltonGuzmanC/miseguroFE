@@ -129,7 +129,7 @@ function f1_generar_campo_de_descuento()
         })
     }
 }
-
+//GUARDAR ITEM DE DETALLE DE FORMULARIO 1
 function form1_guardar_nuevo_detalle_de_reembolso(){
     var numero_de_documento = $("#numero_de_documento").val();
     var indice_de_reembolso = $("#indice_de_reembolso").val();
@@ -184,6 +184,54 @@ function form1_guardar_nuevo_detalle_de_reembolso(){
     }
 }
 
+//GUARDAR REEMBOLSO DE FORMULARIO 3
+function form3_guardar_reembolso()
+{
+    var numero_de_documento = $("#numero_de_documento").val();
+    var indice_de_reembolso = $("#indice_de_reembolso").val();
+    var numero_de_factura = $("#numero_de_factura").val();
+    var fecha_de_factura = $("#fecha_de_factura").val();
+    var indice_de_servicio_medico = $("#indice_de_servicio_medico").val();
+    var valor_de_cobertura = $("#valor_de_cobertura").val();
+
+
+    if((numero_de_documento.length>0)&&(numero_de_factura.length>0)&&(fecha_de_factura.length>0)&&(indice_de_servicio_medico>0)&&(valor_de_cobertura.length>0))
+    {
+        $("form").html("<div class=\"alert alert-collapse bgc-white text-dark-tp3 border-1 brc-secondary-l2 shadow-sm radius-0 py-3 d-flex align-items-start\">\n" +
+            "                  <div class=\"position-tl w-102 m-n1px border-t-4 brc-primary\"></div>\n" +
+            "                  <div class=\"bgc-primary px-4 py-25 radius-1px mr-4 shadow-sm\">\n" +
+            "                    <i class=\"fa fa-exclamation text-180 text-white\"></i>\n" +
+            "                  </div>\n" +
+            "\n" +
+            "                  <div class=\"text-dark-tp3\">\n" +
+            "                    <h3 class=\"text-blue-d1 text-130\">Guardando</h3>\n" +
+            "                    Agregando reembolso...\n" +
+            "                  </div>\n" +
+            "\n" +
+            "                </div>");
+        $.ajax({
+
+            method : 'POST',
+            url : '/controllers/formulario3_agregar_nuevo_reembolso.ctrl.php',
+            data : {
+                'numero_de_documento' : numero_de_documento,
+                'indice_de_reembolso' : indice_de_reembolso,
+                'numero_de_factura' : numero_de_factura,
+                'fecha_de_factura' : fecha_de_factura,
+                'indice_de_servicio_medico' : indice_de_servicio_medico,
+                'valor_de_cobertura' : valor_de_cobertura
+            }
+
+        }).done(function(response){
+            eval(response);
+            generar_formulario_de_detalles_de_reembolso(numero_de_documento);
+        })
+    }
+    else
+    {
+        alert("Todos los campos son necesarios");
+    }
+}
 function generar_lista_de_detalles_de_reembolso(numero_de_documento)
 {
     $.ajax({
@@ -243,4 +291,24 @@ function generar_nuevo_estado_de_reembolso(opcion_de_proceso,numero_de_documento
             eval(response);
         })
     }
+}
+
+function generar_reporte_de_reembolso(numero_de_documento)
+{
+    Swal.fire({
+        icon: 'info',
+        title: 'Generando',
+        text: 'Generando el reporte de reembolso, espere por favor...',
+        allowOutsideClick : false,
+        allowEscapeKey : false,
+        showConfirmButton : false
+    });
+    $.ajax({
+        method : 'POST',
+        url : '/controllers/generar_reporte_de_reembolso.ctrl.php',
+        data : {'numero_de_documento' : numero_de_documento}
+    }).done(function(response){
+        Swal.close();
+        $("#div_formulario_nuevo_reembolso").html(response);
+    })
 }

@@ -44,7 +44,7 @@
 
                     <a class="navbar-brand ml-2 text-white" href="#">
                         <img src="assets/image/logo.png" alt="MiSeguro" width="5%">
-                        <span>MiSeguroFE</span>
+                        <span>MiSeguro</span> <span class="text-blue-l3">farma</span><span class="text-grey-l3">enlace</span>
                     </a>
                 </div>
 
@@ -106,8 +106,8 @@
 
                             <div class="collapse" id="id-user-menu">
                                 <div class="mt-3">
-                                    <a href="#" class="btn btn-light-blue btn-brc-white btn-h-light-blue radius-round py-2 px-1 border-2 shadow-sm">
-                                        <i class="fa fa-power-off w-4 text-110 text-blue-d1"></i>
+                                    <a href="controllers/cerrar_sesion.ctrl.php" class="btn btn-light-blue btn-brc-white btn-h-light-blue radius-round py-2 px-1 border-2 shadow-sm">
+                                        <i class="fa fa-power-off w-4 text-110 text-red-d1"></i>
                                     </a>
 
                                     <a href="#" class="btn btn-light-blue btn-brc-white btn-h-light-blue radius-round py-2 px-1 border-2 shadow-sm">
@@ -120,59 +120,52 @@
                                 </div>
                             </div><!-- /.collapse -->
                         </div>
-                        <ul class="nav flex-column has-active-border">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" id="btn_servicios_medicos">
-                                    <i class="nav-icon fa fa-comment-medical text-purple-d1"></i>
-                                    <span class="nav-text fadeable text-blue text-90">Servicios m&eacute;dicos</span>
-                                </a>
-                            </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" id="btn_servicios_medicos_especiales">
-                                    <i class="nav-icon fa fa-file-medical text-purple-d2"></i>
-                                    <span class="nav-text fadeable text-blue text-85">Servicios m&eacute;dicos especiales</span>
-                                </a>
-                            </li>
-
-
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" id="btn_cie10">
-                                    <i class="nav-icon fa fa-book-medical text-purple-d3"></i>
-                                    <span class="nav-text fadeable text-blue text-90">CIE-10</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" id="btn_establecimientos">
-                                    <i class="nav-icon fa fa-hospital-alt text-purple-d4"></i>
-                                    <span class="nav-text fadeable text-blue text-90">Cl&iacute;nicas / Establecimientos</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" id="btn_empresas_afiliadas">
-                                    <i class="nav-icon fa fa-building text-purple-l1"></i>
-                                    <span class="nav-text fadeable text-blue text-90">Empresas Afiliadas</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" id="btn_beneficiarios_y_afiliados">
-                                    <i class="nav-icon fa fa-people-arrows text-purple-l2"></i>
-                                    <span class="nav-text fadeable text-blue text-90">Beneficiarios y Afiliados</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" id="btn_reembolsos_y_creditos">
-                                    <i class="nav-icon fa fa-paperclip text-purple-l3"></i>
-                                    <span class="nav-text fadeable text-blue text-90">Reembolsos y cr&eacute;ditos</span>
-                                </a>
-                            </li>
-                        </ul>
                     </nav>
+                    <div class="btn-group btn-group-toggle btn-group-vertical d-flex" data-toggle="buttons">
+                        <a href="#" class="d-style mb-1 active btn py-25 btn-outline-dark btn-h-outline-blue btn-a-outline-blue btn-a-bold w-100 btn-brc-tp border-none border-l-4 radius-l-0 radius-r-round text-left text-80" id="btn_servicios_medicos">
+                            <i class="fa fa-medkit text-120 w-3 f-n-hover"></i>
+                            SERVICIOS MEDICOS
+                            <input type="radio" name="btn_servicios_medicos">
+                        </a>
+
+                        <a href="#" class="d-style mb-1 btn py-25 btn-outline-dark btn-h-outline-blue btn-a-outline-blue btn-a-bold w-100 btn-brc-tp border-none border-l-4 radius-0 text-left text-80 radius-l-0 radius-r-round" id="btn_servicios_medicos_especiales">
+                            <i class="fa fa-plus-square text-120 text-orange-d1 w-3 f-n-hover"></i>
+                            SERVICIOS MEDICOS ESPECIALES
+                            <input type="radio" name="btn_servicios_medicos_especiales">
+                        </a>
+
+                        <a href="#" class="d-style mb-1 btn py-25 btn-outline-dark btn-h-outline-blue btn-a-outline-blue btn-a-bold w-100 btn-brc-tp border-none border-l-4 radius-0 text-left text-80 radius-l-0 radius-r-round" id="btn_cie10">
+                            <i class="fa fa-heart-broken text-danger text-120 w-3 f-n-hover"></i>
+                            CIE-10
+                            <input type="radio" name="btn_cie10">
+                        </a>
+
+                        <a href="#" class="d-style mb-1 btn py-25 btn-outline-dark btn-h-outline-blue btn-a-outline-blue btn-a-bold w-100 btn-brc-tp border-none border-l-4 radius-0 text-left text-80 radius-l-0 radius-r-round" id="btn_establecimientos">
+                            <i class="fa fa-hospital-symbol text-success-d1 text-120 w-3 f-n-hover"></i>
+                            ESTABLECIMIENTOS AFILIADOS
+                            <input type="radio" name="btn_establecimientos">
+                        </a>
+
+                        <a href="#" class="d-style mb-1 btn py-25 btn-outline-dark btn-h-outline-blue btn-a-outline-blue btn-a-bold w-100 btn-brc-tp border-none border-l-4 radius-0 text-left text-80 radius-l-0 radius-r-round" id="btn_empresas_afiliadas">
+                            <i class="fa fa-layer-group text-info-d1 text-120 w-3 f-n-hover"></i>
+                            GRUPOS FARMAENLACE
+                            <input type="radio" name="btn_empresas_afiliadas">
+                        </a>
+
+                        <a href="#" class="d-style mb-1 btn py-25 btn-outline-dark btn-h-outline-blue btn-a-outline-blue btn-a-bold w-100 btn-brc-tp border-none border-l-4 radius-0 text-left text-80 radius-l-0 radius-r-round" id="btn_beneficiarios_y_afiliados">
+                            <i class="fa fa-user-friends text-yellow-d4 text-120 w-3 f-n-hover"></i>
+                            AFILIADOS Y BENEFICIARIOS
+                            <input type="radio" name="btn_beneficiarios_y_afiliados">
+                        </a>
+
+                        <a href="#" class="d-style mb-1 btn py-25 btn-outline-dark btn-h-outline-blue btn-a-outline-blue btn-a-bold w-100 btn-brc-tp border-none border-l-4 radius-0 text-left text-80 radius-l-0 radius-r-round" id="btn_reembolsos_y_creditos">
+                            <i class="fa fa-money-bill text-green-l2 text-120 w-3 f-n-hover"></i>
+                            CREDITOS Y REEMBOLSOS
+                            <input type="radio" name="btn_reembolsos_y_creditos">
+                        </a>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -181,8 +174,11 @@
         <section class="main-content">
             <!-- Page Content -->
             <div class="page-content" id="contenedor_principal">
-
-            </div>
+                
+               <?php
+                    include_once 'controllers/mostrar_parametros_de_configuracion.ctrl.php';
+               ?>
+            </div>        
 
         </section>
 
@@ -198,16 +194,7 @@
 <script src="js/sweetalert2.all.js"></script>
 <!-- include ace.js -->
 <script src="./dist/js/ace.js"></script>
-<script>
-    $(function(){
-        $("#contenedor_principal").load('servicios_medicos.view.php',function(status,response,xhr){
-            if(xhr.status===404)
-            {
-                $("#contenedor_principal").html("<h1 class='h-1'>Error 404, p&aacute;gina no encontrada</h1>");
-            }
-        })
-    })
-</script>
+
 </body>
 
 </html>

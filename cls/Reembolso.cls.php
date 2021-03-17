@@ -4,13 +4,14 @@ include_once 'Conexion.cls.php';
 include_once 'Historial.cls.php';
 include_once 'Mailer.cls.php';
 include_once 'MovimientoDeUsuario.cls.php';
+include_once 'Parametros.cls.php';
 include_once '../config.ini.php';
 class Reembolso
 {
     private $formulario_nuevo_reembolso,$data_reembolso,$beneficiario,$encabezado_de_reembolso,$data_de_usuario,$num_reembolsos,$id_de_usuario,$digitador,$mail,$etq_estado,$informacion_de_encabezado;
     private $id_de_administrador,$numero_de_documento,$enfermedad_preexistente,$tipo_de_reembolso,$codigo_de_grupo_de_cie,$cie10,$estado_de_reembolso,$formulario_de_reembolso;
     private $filtro,$data,$lista_de_reembolsos,$formulario_de_detalle_de_reembolsos;
-    private $item_formulario_1,$encabezado,$saldo_de_usuario,$boton_imprimir,$data_de_cie;
+    private $item_formulario_1,$encabezado,$saldo_de_usuario,$obj_param,$data_de_cie;
     static function  generar_datalist_de_usuarios()
     {
         $data = Conexion::conect()->select('informacion_de_usuario','*',['activar_usuario'=>1]);
@@ -817,6 +818,8 @@ class Reembolso
         //RECUPERAR DATOS DE ENCABEZADO
         $encabezado=Conexion::conect()->get('encabezado_de_reembolso','*',['numero_de_documento'=>$numero_de_documento]);
 
+        //RECUPERAR 
+
         //RECUPERAR DETALLES DE REEMBOLSO
         $detalles_de_reembolso = Conexion::conect()->select('detalles_de_reembolso','*',['indice_de_reembolso_fk'=>$encabezado['indice_de_reembolso']]);
         $sumatoria_subtotal = 0;
@@ -833,7 +836,9 @@ class Reembolso
                 {
                     if($encabezado['tipo_de_reembolso']=='1')
                     {
-                        $deducible = 20;
+                        $obj_param = new Parametros();
+
+                        $deducible = $obj_param->obtener_deducible();
                     }
                     else
                     {

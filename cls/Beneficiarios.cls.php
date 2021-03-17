@@ -3,10 +3,12 @@ date_default_timezone_set('America/Lima');
 include_once 'Conexion.cls.php';
 include_once 'Historial.cls.php';
 include_once 'Mailer.cls.php';
+include_once 'Parametros.cls.php';
+include_once 'MovimientoDeUsuario.cls.php';
 include_once '../config.ini.php';
 class Beneficiarios{
     private $filtro,$data,$beneficiario,$tabla,$organizacion,$formulario_de_edicion,$provincia,$ciudad,$btn_beneficiario,$etq_benefactor;
-    private $id_de_usuario,$numero_de_id_de_usuario,$nombres,$apellidos,$fecha_de_nacimiento,$fecha_de_alta,$cargo_ocupacion,$tipo_de_cuenta,$telefono_de_contacto,$email,$direccion,$es_titular_de_cuenta,$rol_familiar,$tiene_acceso_al_sistema,$correo,$id_de_dependiente,$formulario,$etq_activacion,$estado_de_usuario;
+    private $id_de_usuario,$numero_de_id_de_usuario,$nombres,$apellidos,$fecha_de_nacimiento,$fecha_de_alta,$cargo_ocupacion,$tipo_de_cuenta,$telefono_de_contacto,$email,$direccion,$es_titular_de_cuenta,$rol_familiar,$tiene_acceso_al_sistema,$correo,$id_de_dependiente,$formulario,$etq_activacion,$estado_de_usuario,$parametros,$saldo_de_usuario;
     function generar_lista_de_beneficiarios($filtro)
     {
         $this->filtro = $filtro;
@@ -520,7 +522,8 @@ class Beneficiarios{
         $this->direccion = utf8_encode($direccion);
         $this->id_de_dependiente = $id_de_dependiente;
         $this->rol_familiar = utf8_encode(strtoupper($rol_familiar));
-
+        $this->parametros = new Parametros();
+        $this->saldo_de_usuario = $this->parametros->obtener_saldo();
 
         if(Conexion::conect()->has('informacion_de_usuario',['numero_de_id_de_usuario'=>$this->numero_de_id_de_usuario]))
         {
@@ -558,6 +561,7 @@ class Beneficiarios{
             ])){
                 Historial::nueva_actividad($this->id_de_usuario,'USUARIOS','NUEVO USUARIO REGISTRADO :'.$this->numero_de_id_de_usuario);
                 echo "$(\".card_main\").html(\"<div class=\'text-dark-tp3\'><h3 class=\'text-success-d1 text-130\'>Usuario registrado</h3>Usuario egistrado en el sistema correctamente .</div>\")";
+                MovimientoDeUsuario::nuevo_movimiento($this->numero_de_id_de_usuario,'SALDO INICIAL AL CREAR CUENTA','1',$this->saldo_de_usuario,0);
               
             }
         }
@@ -590,6 +594,7 @@ class Beneficiarios{
 
     }
 }
+
 
 
 

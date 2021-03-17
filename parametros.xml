@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<parametros>
+  <parametro>
+    <id_de_parametro>1</id_de_parametro>
+    <titulo>Valor de deducible</titulo>
+    <valor>20</valor>
+  </parametro>
+  <parametro>
+    <id_de_parametro>2</id_de_parametro>
+    <titulo>Saldo de Usuario</titulo>
+    <valor>3000</valor>
+  </parametro>
+</parametros>

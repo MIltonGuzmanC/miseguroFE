@@ -88,7 +88,7 @@ function guardar_nuevo_beneficiario()
     var email = $("#correo").val();
     var direccion = $("#direccion").val();
 
-    if((id_de_dependiente.length>0)&&(numero_de_id_de_usuario.length>5)&&(nombres.length>5)&&(apellidos.length>5)&&(cargo_ocupacion.length>4)&&(rol_familiar.length>5)&&(fecha_de_nacimiento.toString().length>3)&&(provincia.length>3)&&(ciudad.length>3)&&(telefono_de_contacto.length>3)&&(direccion.length>3))
+    if((id_de_dependiente.length>0)&&(numero_de_id_de_usuario.length>0)&&(nombres.length>0)&&(apellidos.length>0)&&(cargo_ocupacion.length>0)&&(rol_familiar.length>0)&&(fecha_de_nacimiento.toString().length>0)&&(provincia.length>0)&&(ciudad.length>0)&&(telefono_de_contacto.length>0)&&(direccion.length>0))
     {
         $(".card_main").html("<div class=\"alert alert-collapse bgc-white text-dark-tp3 border-1 brc-secondary-l2 shadow-sm radius-0 py-3 d-flex align-items-start\">\n" +
             "                  <div class=\"position-tl w-102 m-n1px border-t-4 brc-primary\"></div>\n" +

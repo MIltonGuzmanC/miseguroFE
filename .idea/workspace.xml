@@ -5,19 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a06fa6d-6808-47a1-9bdf-176916333451" name="Default Changelist" comment="reembolso de formulario 1 completo">
-      <change afterPath="$PROJECT_DIR$/assets/logo_fe.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cls/GeneradorDeReportes.cls.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/formulario3_agregar_nuevo_reembolso.ctrl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/formulario3_generar_formulario_de_beneficio.ctrl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/generar_reporte_de_reembolso.ctrl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/print.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cls/Parametros.cls.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/actualizar_parametros_del_sistema.ctrl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/cerrar_sesion.ctrl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/parametros.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/administrador.vw.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrador.vw.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cls/Beneficiarios.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/Beneficiarios.cls.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cls/Mailer.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/Mailer.cls.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cls/CategoriaCie10.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/CategoriaCie10.cls.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cls/MovimientoDeUsuario.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/MovimientoDeUsuario.cls.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cls/Reembolso.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/Reembolso.cls.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/reembolsos_y_creditos.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/reembolsos_y_creditos.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reembolsos_y_creditos.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/reembolsos_y_creditos.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/beneficiarios.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/beneficiarios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/login_de_usuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/login_de_usuario.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,6 +205,24 @@
       <workItem from="1614282925487" duration="99000" />
       <workItem from="1614285071216" duration="612000" />
       <workItem from="1614290268153" duration="1017000" />
+      <workItem from="1614618397816" duration="168000" />
+      <workItem from="1614620839338" duration="6000" />
+      <workItem from="1614620875908" duration="630000" />
+      <workItem from="1615436358722" duration="1224000" />
+      <workItem from="1615438175901" duration="1430000" />
+      <workItem from="1615440240608" duration="119000" />
+      <workItem from="1615476304941" duration="226000" />
+      <workItem from="1615479055244" duration="1573000" />
+      <workItem from="1615480881300" duration="1055000" />
+      <workItem from="1615486392190" duration="740000" />
+      <workItem from="1615489975324" duration="505000" />
+      <workItem from="1615495273647" duration="239000" />
+      <workItem from="1615515384239" duration="1170000" />
+      <workItem from="1615517193194" duration="954000" />
+      <workItem from="1615519208913" duration="242000" />
+      <workItem from="1615521331707" duration="151000" />
+      <workItem from="1615807110271" duration="4000" />
+      <workItem from="1616024776389" duration="279000" />
     </task>
     <task id="LOCAL-00001" summary="adición de seguridad en puerto de DB">
       <created>1611020661408</created>

@@ -84,7 +84,7 @@
                                             </a>
                                             <h1 class="text-170">
                             <span class="text-blue-d1">
-                                Mi <span class="text-80 text-dark-tp3">SeguroFE</span>
+                                Mi <span class="text-80 text-dark-tp3">Seguro Farmaenlace</span>
                             </span>
                                             </h1>
 

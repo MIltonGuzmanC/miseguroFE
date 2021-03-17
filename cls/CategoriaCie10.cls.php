@@ -8,20 +8,23 @@ class CategoriaCie10
     private $filtro,$data,$cie,$tabla_de_cies;
        //FUNCION QUE GENERA UNA LISTA DE CATEGORIAS
         static function generar_lista_de_categorias()
-    {
-        $lista_de_categorias="";
-        $data = Conexion::conect()->select('grupo_de_cie','*',["ORDER"=>'codigo_de_grupo_de_cie']);
-        $lista_de_categorias.="<div class=\"d-inline-flex align-items-center mb-1\">
-                                        <i class=\"fa fa-book text-green text-100 ml-25 pos-abs\"></i>
-                                        <select class=\"form-control px-5 \" id=\"codigo_de_grupo\">
-                                            <option value=\"0\">Seleccione categor&iacute;a</option>";
-                foreach ($data as $categoria)
-                {
-                    $lista_de_categorias.="<option value='".$categoria['codigo_de_grupo_de_cie']."'>".utf8_decode($categoria['nombre_del_grupo'])."</option>";
-                }
-        $lista_de_categorias.="</select></div>";
-        echo $lista_de_categorias;
-    }
+        {
+            $lista_de_categorias="";
+            $data = Conexion::conect()->select('grupo_de_cie','*',["ORDER"=>'codigo_de_grupo_de_cie']);
+            /*$lista_de_categorias.="<div class=\"d-inline-flex align-items-center mb-1\">
+                                            <i class=\"fa fa-book text-green text-100 ml-25 pos-abs\"></i>
+                                            <select class=\"form-control px-5 \" id=\"codigo_de_grupo\" data-place-holder='seleccione categoria'>
+                                                <option value=\"0\">Seleccione categor&iacute;a</option>";
+                    foreach ($data as $categoria)
+                    {
+                        $lista_de_categorias.="<option value='".$categoria['codigo_de_grupo_de_cie']."'>".utf8_decode($categoria['nombre_del_grupo'])."</option>";
+                    }
+            $lista_de_categorias.="</select></div>";*/
+            $lista_de_categorias.="<input list='lista_grupo_de_cie' class='d-inline-flex align-items-center form-control'>";
+
+            
+            echo $lista_de_categorias;
+        }
     //=========================================================================
 
     //FUNCION QUE AGREGA UNA NUEVA CATEGORIA

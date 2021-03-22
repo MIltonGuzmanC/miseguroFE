@@ -3,7 +3,7 @@
 
 class Parametros
 {
-    public $archivo,$elemento,$elementos,$url,$formulario,$parametro1,$parametro2,$valor_de_deducible,$saldo;
+    public $archivo,$elemento,$elementos,$url,$formulario,$parametro1,$parametro2,$valor_de_deducible,$saldo,$tiempo;
     function mostrar_parametros()
     {
         $this->url = 'parametros.xml';
@@ -15,7 +15,7 @@ class Parametros
         foreach($this->elementos as $this->elemento)
         {
             
-            $this->formulario.="<div class=\"col-4 px-0 mb-2 mb-md-0\">
+            $this->formulario.="<div class=\"col-8 px-0 mb-2 mb-md-0\">
                 
                 <div class=\"ccard h-100 pt-2 pb-25 px-25 d-flex mx-2 overflow-hidden\">
                     <div class=\"position-br	mb-n5 mr-n5 radius-round bgc-purple-l3 opacity-3\" style=\"width: 5.25rem; height: 5.25rem;\"></div>
@@ -23,14 +23,14 @@ class Parametros
                     <div class=\"position-br	mb-n5 mr-n5 radius-round bgc-purple-l1 opacity-5\" style=\"width: 4.25rem; height: 4.25rem;\"></div>
                     <div class=\"flex-grow-1 pl-25 pos-rel d-flex flex-column\">
                         <div class=\"text-secondary-d4\">
-                         <span class=\"text-200 text-info-d1\">$
+                         <span class=\"text-200 text-info-d1\">
                              <input type='number' class='form-control-sm border-1 text-80' name='valor_".$this->elemento->id_de_parametro."' value='".$this->elemento->valor."'>
                             
                          </span>
                         </div>
 
                         <div class=\"mt-auto text-nowrap text-secondary-d2 text-105 letter-spacing mt-n1\">
-                            <span class='text-success'>".utf8_decode($this->elemento->titulo)."</span>
+                            <span class='text-success'>".($this->elemento->titulo)."</span>
                         </div>
                     </div>
                     <div class=\"ml-auto pr-1 align-self-center pos-rel text-125\">
@@ -45,7 +45,7 @@ class Parametros
 
         echo $this->formulario;
     }
-    static function  sobreescribir_parametros($valor1,$valor2)
+    static function  sobreescribir_parametros($valor1,$valor2,$valor3)
     {
         
         $dom = new DOMDocument();
@@ -58,7 +58,7 @@ class Parametros
 		$parametro1 = $dom->createElement('parametro');
             $id_de_parametro_1 = $dom->createElement('id_de_parametro', '1');
             $parametro1->appendChild($id_de_parametro_1);
-            $titulo = $dom->createElement('titulo','Valor de deducible');
+            $titulo = $dom->createElement('titulo','Valor de cobertura por concepto de  deducible en dólares');
             $parametro1->appendChild($titulo);
             $valor = $dom->createElement('valor',$valor1);
             $parametro1->appendChild($valor);
@@ -68,12 +68,23 @@ class Parametros
         $parametro2 = $dom->createElement('parametro');
             $id_de_parametro_2 = $dom->createElement('id_de_parametro', '2');
             $parametro2->appendChild($id_de_parametro_2);
-            $titulo = $dom->createElement('titulo','Saldo de Usuario');
+            $titulo = $dom->createElement('titulo','Saldo inicial por Usuario en dólares');
             $parametro2->appendChild($titulo);
             $valor = $dom->createElement('valor',$valor2);
             $parametro2->appendChild($valor);
         $root->appendChild($parametro2);
 		$dom->appendChild($root);
+
+        $parametro3 = $dom->createElement('parametro');
+            $id_de_parametro_3 = $dom->createElement('id_de_parametro', '3');
+            $parametro3->appendChild($id_de_parametro_3);
+            $titulo = $dom->createElement('titulo','Tiempo mínimo de afiliación para acceder al servicio en meses');
+            $parametro3->appendChild($titulo);
+            $valor = $dom->createElement('valor',$valor3);
+            $parametro3->appendChild($valor);
+        $root->appendChild($parametro3);
+		$dom->appendChild($root);
+
 	    $dom->save($xml_file_name);
     header("Status: 301 Moved Permanently");
     header("Location: ../");
@@ -107,5 +118,19 @@ class Parametros
             
         }
         return floatval($this->saldo);
+    }
+    function obtener_tiempo_minimo_de_afiliacion()
+    {
+        $this->url = '../parametros.xml';
+        $this->elementos = simplexml_load_file($this->url);
+        foreach($this->elementos as $this->elemento)
+        {
+            if($this->elemento->id_de_parametro == 3)
+            {
+                $this->tiempo = $this->elemento->valor;
+            }
+            
+        }
+        return floatval($this->tiempo);
     }
 }

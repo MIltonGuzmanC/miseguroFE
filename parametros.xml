@@ -2,12 +2,17 @@
 <parametros>
   <parametro>
     <id_de_parametro>1</id_de_parametro>
-    <titulo>Valor de deducible</titulo>
+    <titulo>Valor de cobertura por concepto de  deducible en dólares</titulo>
     <valor>20</valor>
   </parametro>
   <parametro>
     <id_de_parametro>2</id_de_parametro>
-    <titulo>Saldo de Usuario</titulo>
+    <titulo>Saldo inicial por Usuario en dólares</titulo>
     <valor>3000</valor>
+  </parametro>
+  <parametro>
+    <id_de_parametro>3</id_de_parametro>
+    <titulo>Tiempo mínimo de afiliación para acceder al servicio en meses</titulo>
+    <valor>4</valor>
   </parametro>
 </parametros>

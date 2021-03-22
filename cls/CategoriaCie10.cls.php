@@ -20,8 +20,13 @@ class CategoriaCie10
                         $lista_de_categorias.="<option value='".$categoria['codigo_de_grupo_de_cie']."'>".utf8_decode($categoria['nombre_del_grupo'])."</option>";
                     }
             $lista_de_categorias.="</select></div>";*/
-            $lista_de_categorias.="<input list='lista_grupo_de_cie' class='d-inline-flex align-items-center form-control'>";
-
+            $lista_de_categorias.="<input id='codigo_de_grupo' list='id_de_grupo' class='d-inline-flex align-items-center form-control'>";
+            $lista_de_categorias.="<datalist id='id_de_grupo'>";
+                    foreach($data as $categoria)
+                    {
+                        $lista_de_categorias.="<option value='".$categoria['codigo_de_grupo_de_cie']."'>".utf8_decode($categoria['nombre_del_grupo'])."</option>";
+                    }
+            $lista_de_categorias.="</datalist>";        
             
             echo $lista_de_categorias;
         }
@@ -130,6 +135,7 @@ class CategoriaCie10
             $lista.="<option value='".$categoria['codigo_de_grupo_de_cie']."'>CODIGO : ".$categoria['codigo_de_grupo_de_cie']." - ".utf8_decode($categoria['nombre_del_grupo'])."</option>";
         }
         $lista.="</select>";
+        
         echo $lista;
     }
 

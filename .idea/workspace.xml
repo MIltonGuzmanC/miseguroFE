@@ -4,20 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a06fa6d-6808-47a1-9bdf-176916333451" name="Default Changelist" comment="reembolso de formulario 1 completo">
-      <change afterPath="$PROJECT_DIR$/cls/Parametros.cls.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/actualizar_parametros_del_sistema.ctrl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/cerrar_sesion.ctrl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/parametros.xml" afterDir="false" />
+    <list default="true" id="9a06fa6d-6808-47a1-9bdf-176916333451" name="Default Changelist" comment="cambios">
+      <change afterPath="$PROJECT_DIR$/controllers/mostrar_beneficiarios_de_afiliado.ctrl.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/administrador.vw.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrador.vw.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cls/Beneficiarios.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/Beneficiarios.cls.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cls/CategoriaCie10.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/CategoriaCie10.cls.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cls/MovimientoDeUsuario.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/MovimientoDeUsuario.cls.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cls/Reembolso.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/Reembolso.cls.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cls/Parametros.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/Parametros.cls.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/actualizar_parametros_del_sistema.ctrl.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/actualizar_parametros_del_sistema.ctrl.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/beneficiarios.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/beneficiarios.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/login_de_usuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/login_de_usuario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parametros.xml" beforeDir="false" afterPath="$PROJECT_DIR$/parametros.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -223,6 +219,10 @@
       <workItem from="1615521331707" duration="151000" />
       <workItem from="1615807110271" duration="4000" />
       <workItem from="1616024776389" duration="279000" />
+      <workItem from="1616025436998" duration="62000" />
+      <workItem from="1616036340314" duration="393000" />
+      <workItem from="1616370394346" duration="91000" />
+      <workItem from="1616435663621" duration="778000" />
     </task>
     <task id="LOCAL-00001" summary="adición de seguridad en puerto de DB">
       <created>1611020661408</created>
@@ -371,7 +371,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613070794959</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="cambios">
+      <created>1616025482634</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1616025482634</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -408,7 +415,8 @@
     <MESSAGE value="proyecto completo" />
     <MESSAGE value="proyecto completo, realizando reembolsos formulario 1" />
     <MESSAGE value="reembolso de formulario 1 completo" />
-    <option name="LAST_COMMIT_MESSAGE" value="reembolso de formulario 1 completo" />
+    <MESSAGE value="cambios" />
+    <option name="LAST_COMMIT_MESSAGE" value="cambios" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -8,13 +8,13 @@ include_once 'MovimientoDeUsuario.cls.php';
 include_once '../config.ini.php';
 class Beneficiarios{
     private $filtro,$data,$beneficiario,$tabla,$organizacion,$formulario_de_edicion,$provincia,$ciudad,$btn_beneficiario,$etq_benefactor;
-    private $id_de_usuario,$numero_de_id_de_usuario,$nombres,$apellidos,$fecha_de_nacimiento,$fecha_de_alta,$cargo_ocupacion,$tipo_de_cuenta,$telefono_de_contacto,$email,$direccion,$es_titular_de_cuenta,$rol_familiar,$tiene_acceso_al_sistema,$correo,$id_de_dependiente,$formulario,$etq_activacion,$estado_de_usuario,$parametros,$saldo_de_usuario;
+    private $id_de_usuario,$numero_de_id_de_usuario,$nombres,$apellidos,$fecha_de_nacimiento,$fecha_de_alta,$cargo_ocupacion,$tipo_de_cuenta,$telefono_de_contacto,$email,$direccion,$es_titular_de_cuenta,$rol_familiar,$tiene_acceso_al_sistema,$correo,$id_de_dependiente,$formulario,$etq_activacion,$estado_de_usuario,$parametros,$saldo_de_usuario,$data_de_afilidado;
     function generar_lista_de_beneficiarios($filtro)
     {
         $this->filtro = $filtro;
         if($this->filtro=='*')
         {
-            $this->data = Conexion::conect()->select('informacion_de_usuario','*',["ORDER"=>'apellidos']);
+            $this->data = Conexion::conect()->select('informacion_de_usuario','*',['es_titular_de_cuenta'=>1],["ORDER"=>'apellidos']);
         }
         else
         {
@@ -71,9 +71,8 @@ class Beneficiarios{
                             <span class=\"d-inline-block w-4 h-4 bgc-purple text-white  text-center pt-2 radius-round mr-2\">
                                 ".utf8_decode(substr($this->beneficiario['apellidos'],0,1))."
 							</span>
-                            <a href=\"#\" class=\"text-secondary-d2 text-95 text-600\">
-                                ".utf8_decode($this->beneficiario['apellidos'])."
-                            </a>
+              <a data-fancybox data-type=\"ajax\" href=\"#\" class=\"text-dark-m3 py-0\" data-src=\"controllers/mostrar_beneficiarios_de_afiliado.ctrl.php?numero_de_id_de_usuario=".$this->beneficiario['numero_de_id_de_usuario']."\" href=\"javascript:;\">
+              ".utf8_decode($this->beneficiario['apellidos'])."</a>
                           </td>
                           <td class=\"text-dark-m3\">
                                 ".utf8_decode($this->beneficiario['nombres'])."
@@ -98,6 +97,83 @@ class Beneficiarios{
                     </table>";
         echo $this->tabla;
     }
+    function generar_lista_de_beneficiados_de_afiliado($filtro)
+    {
+      $this->numero_de_id_de_usuario = $filtro;
+      $this->data_de_afilidado = Conexion::conect()->get('informacion_de_usuario','*',['numero_de_id_de_usuario'=>$this->numero_de_id_de_usuario]);
+      $this->data = Conexion::conect()->select('informacion_de_usuario','*',['id_de_dependiente'=>$this->numero_de_id_de_usuario]);
+      $this->tabla.="<span class='h4 text-primary py-1px'>Beneficiarios de ".utf8_decode($this->data_de_afilidado['apellidos'])." ".utf8_decode($this->data_de_afilidado['nombres'])."</span>";
+      $this->tabla .="<table class=\"table text-dark-m1 brc-black-tp10 mb-1\">
+                      <thead>
+                        <tr class=\"bgc-white text-secondary-d3 text-95\">
+                          <th class=\"py-3 pl-35\">
+                                N&uacute;mero de ID
+                          </th>
+                          <th>
+                                Apellidos y Nombres
+                          </th>
+                          <th>
+                                Parentesco
+                          </th>  
+                         
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      ";
+                      foreach ($this->data as $this->beneficiario){
+                        $this->organizacion = Conexion::conect()->get('datos_de_organizacion','*',['indice_de_organizacion'=>$this->beneficiario['indice_de_organizacion_fk']]);
+                        if($this->beneficiario['es_titular_de_cuenta']==1)
+                        {
+                            $this->btn_beneficiario="<a data-fancybox data-type=\"ajax\" href=\"#\" class=\"mx-2px btn radius-1 border-2 btn-xs btn-brc-tp btn-light-secondary btn-h-lighter-success btn-a-lighter-success\" data-src=\"controllers/mostrar_formulario_nuevo_beneficiario.ctrl.php?numero_de_id_de_usuario=".$this->beneficiario['numero_de_id_de_usuario']."\" href=\"javascript:;\">
+                <i class=\"fa fa-user-friends text-primary-l1\"></i></a>";
+        
+                        }
+                        else
+                        {
+                            $this->btn_beneficiario="<i class=\"fa fa-user-alt text-success-d1\"></i>";
+                        }
+        
+                        if($this->beneficiario['activar_usuario']==1)
+                        {
+                            $this->etq_activacion = "<i class='fa fa-power-off text-success-l3'></i>";
+                        }
+                        else
+                        {
+                            $this->etq_activacion = "<i class='fa fa-power-off text-danger-d1'></i>";
+                        }
+                        $this->tabla.="<tr class=\"bgc-h-orange-l4 text-90\">
+                                  <td class=\"text-dark-m3\">
+                                        ".utf8_decode($this->beneficiario['numero_de_id_de_usuario'])."
+                                  </td>
+                                  <td class=\"pl-35\">
+                                    <span class=\"d-inline-block w-4 h-4 bgc-purple text-white  text-center pt-2 radius-round mr-2\">
+                                        ".utf8_decode(substr($this->beneficiario['apellidos'],0,1))."
+                      </span>
+        
+                      ".utf8_decode($this->beneficiario['apellidos'])." ".utf8_decode($this->beneficiario['nombres'])."
+                                  </td>
+                                  <td class=\"text-dark-l1 text-95\">
+                                        ".utf8_decode($this->beneficiario['rol_familiar'])."
+                                  </td>
+                                 
+        
+                                  <td class=\"text-right pr-35\">
+                                    <a data-fancybox data-type=\"ajax\" href=\"#\" class=\"mx-2px btn radius-1 border-2 btn-xs btn-brc-tp btn-light-secondary btn-h-lighter-success btn-a-lighter-success\" data-src=\"controllers/mostrar_formulario_de_edicion_de_beneficiario.ctrl.php?numero_de_id_de_usuario=".$this->beneficiario['numero_de_id_de_usuario']."\" href=\"javascript:;\">
+                <i class=\"fa fa-pencil-alt text-secondary-d1\"></i>
+                                        </a>
+                                        ".$this->btn_beneficiario."
+                                    <button type=\"button\" class=\"btn btn-sm btn-outline-default shadow-sm radius-2px px-1 py-1\" onclick='cambiar_estado_de_activacion_de_usuario(".$this->beneficiario['numero_de_id_de_usuario'].")'>
+                                        ".$this->etq_activacion."
+                                    </button>
+                                  </td>
+                                </tr>";
+                }            
+          $this->tabla.="</tbody>
+                      </table>";
+          echo $this->tabla;                
+    }
+
     function generar_formulario_de_edicion($id_de_usuario)
     {
         $this->beneficiario = Conexion::conect()->get('informacion_de_usuario','*',['numero_de_id_de_usuario'=>$id_de_usuario]);

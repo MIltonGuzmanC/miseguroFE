@@ -67,7 +67,7 @@
                             <div class="dropdown-menu dropdown-caret dropdown-menu-right dropdown-animated brc-primary-m3 py-1">
                                 <div class="dropdown-divider brc-primary-l2"></div>
 
-                                <a class="dropdown-item btn btn-outline-grey bgc-h-secondary-l3 btn-h-light-secondary btn-a-light-secondary" href="cerrar_sesion.php">
+                                <a class="dropdown-item btn btn-outline-grey bgc-h-secondary-l3 btn-h-light-secondary btn-a-light-secondary" href="controllers/cerrar_sesion.ctrl.php">
                                     <i class="fa fa-power-off text-warning-d1 text-105 mr-1"></i>
                                     Salir
                                 </a>

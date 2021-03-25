@@ -165,7 +165,38 @@
                             <input type="radio" name="btn_reembolsos_y_creditos">
                         </a>
                     </div>
-
+                    <ul class="nav has-active-border active-on-right">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link dropdown-toggle collapsed">
+                            <i class="nav-icon fa fa-print text-blue-d1"></i>
+                            <span class="nav-text fadeable">
+                                <span>Reportes</span>
+                            </span>
+                            <b class="caret fa fa-angle-left rt-n90"></b>
+                        </a>
+                        <div class="hideable submenu collapse" style="">
+                            <ul class="submenu-inner">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link" id="btn_rp_reembolsos_por_periodo">
+                                      <span class="nav-text">
+                                          <span class="text-info-d1 text-90">Reembolsos por Periodo</span>
+                                      </span>
+                                    </a>
+                                    <a href="#" class="nav-link" id="btn_rp_reembolsos_por_usuario">
+                                      <span class="nav-text">
+                                          <span class="text-info-d1 text-90">Reembolsos por Usuario</span>
+                                      </span>
+                                    </a>
+                                    <a href="html/buttons.html" class="nav-link" id="btn_rp_movimientos_de_usuario">
+                                      <span class="nav-text">
+                                          <span class="text-info-d1 text-90">Movimientos de Usuario</span>
+                                      </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    </ul>
                 </div>
             </div>
         </div>

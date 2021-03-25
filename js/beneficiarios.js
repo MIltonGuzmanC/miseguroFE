@@ -82,6 +82,7 @@ function guardar_nuevo_beneficiario()
     var cargo_ocupacion = $("#cargo_ocupacion").val();
     var rol_familiar = $("#rol_familiar").val();
     var fecha_de_nacimiento = $("#fecha_nacimiento").val();
+    var fecha_de_alta = $("#fecha_de_alta").val();
     var provincia = $("#provincia").val();
     var ciudad = $("#ciudad").val();
     var telefono_de_contacto = $("#telefono").val();
@@ -110,6 +111,7 @@ function guardar_nuevo_beneficiario()
                 'nombres' : nombres,
                 'apellidos' : apellidos,
                 'fecha_de_nacimiento' : fecha_de_nacimiento,
+                'fecha_de_alta' : fecha_de_alta,
                 'cargo_ocupacion' : cargo_ocupacion,
                 'telefono_de_contacto' : telefono_de_contacto,
                 'email' : email,

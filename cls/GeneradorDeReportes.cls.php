@@ -143,4 +143,78 @@ class GeneradorDeReportes
     echo $reporte;
     }
 
+    //GENERA UN REPORTE DE TODOS LOS REEMBOLSOS DEPENDIENDO EL AÑO
+    static function reporte_de_reembolsos_por_periodod($periodo)
+    {
+        $data_de_encabezados = Conexion::conect()->select('encabezado_de_reembolso','*',['periodo'=>$periodo]);
+        $reporte="";
+        $total_de_reembolso =0;
+        $etiqueta_de_estado = '';
+        $etiqueta_de_tipo_de_reembolso = '';
+        $reporte.="<table class=\"table text-dark-m1 brc-black-tp10 mb-1\">
+                      <thead>
+                        <tr class=\"bgc-white text-secondary-d3\">
+                          <th colspan='6' class=\"py-3 pl-35 text-center\">
+                            <span class='h3  text-primary-d1'>Reporte de reembolsos generados en el per&iacute;odo ".$periodo."</span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tr class=\"bgc-white text-secondary-d3 text-85\">
+                        <th class=\"py-3 pl-35 text-center\">Fecha de apertura</th>
+                        <th class=\"py-3 pl-35 text-center\">N&uacute;mero de documento</th>
+                        <th class=\"py-3 pl-35 text-center\">Beneficiario</th>
+                        <th class=\"py-3 pl-35 text-center\">Tipo de reembolso</th>
+                        <th class=\"py-3 pl-35 text-center\">Estado</th>        
+                        <th class=\"py-3 pl-35 text-center\">Reembolso</th>
+                      </tr>
+                      <tbody>
+                      ";
+        foreach ($data_de_encabezados as $encabezado)
+        {
+
+            $usuario = Conexion::conect()->get('informacion_de_usuario','*',['numero_de_id_de_usuario'=>$encabezado['numero_de_id_de_usuario_fk']]);
+            switch ($encabezado['estado_de_reclamo'])
+            {
+                case 1: $etiqueta_de_estado = 'GENERADO';
+                    break;
+                case 2: $etiqueta_de_estado = 'PROCESADO';
+                    break;
+                case 3: $etiqueta_de_estado = 'RECHAZADO';
+                    break;
+                case 4: $etiqueta_de_estado = 'ENTREGADO';
+                    break;
+
+            }
+
+            switch ($encabezado['tipo_de_reembolso'])
+            {
+                case 1: $etiqueta_de_tipo_de_reembolso = 'NORMAL';
+                    break;
+                case 2: $etiqueta_de_tipo_de_reembolso = 'CREDITO HOSPITALARIO';
+                    break;
+                case 3: $etiqueta_de_tipo_de_reembolso = 'COORDINACION DE BENEFICIOS';
+                    break;
+
+            }
+
+            $reporte.="<tr class='bgc-h-orange-l1 text-80'>
+                        <td class='text-left'>".$encabezado['fecha_de_ingreso']."</td>
+                        <td class='text-left'><a onclick='generar_reporte_de_reembolso(\"".$encabezado['numero_de_documento']."\")'><i class='text-orange fa  fa-print px-3px'></i> ".$encabezado['numero_de_documento']."</a></td>
+                        <td class='text-left'>".utf8_decode($usuario['apellidos'])." ".utf8_decode($usuario['nombres'])."</td>
+                        <td class='text-left'>".utf8_decode($etiqueta_de_tipo_de_reembolso)."</td>
+                        <td class='text-left'>".utf8_decode($etiqueta_de_estado)."</td>
+                        <td class='text-right'>$ ".$encabezado['total_de_reembolso']."</td>
+                    </tr>";
+            $total_de_reembolso=$total_de_reembolso+$encabezado['total_de_reembolso'];
+
+        }
+        $reporte.="<tr class='bgc-h-orange-l1 text-80'>";
+            $reporte.="<td colspan='2' class='text-center h4 text-primary-d1'>Total reembolsado en este per&iacute;odo</td>
+            <td colspan='4' class='text-right h4 text-primary-d2'>$".$total_de_reembolso."</td>";
+        $reporte.="</tr>";
+        $reporte.="<tr><td colspan='6' class='align-content-center'><input type='button' class='btn btn-light-info' value='Imprimir' onclick='imprimir(\"div_formulario_nuevo_reembolso\")'></td></tr>";
+        $reporte.="</tbody></table>";
+        return $reporte;
+    }
+
 }

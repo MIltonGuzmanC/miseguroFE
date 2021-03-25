@@ -556,7 +556,19 @@ class Beneficiarios{
                                                         <input type=\"date\" class=\"form-control form-control-lg px-475\" id=\"fecha_nacimiento\">
                                                     </div>
                                                 </div>
-                                            </div>                                                                                                                  
+                                            </div>                                                                                                                                  <div class=\"form-group row\">
+                                                <div class=\"col-3 col-form-label text-sm-right pr-0\">
+                                                    <label for=\"fecha_de_alta\" class=\"mb-0\">
+                                                        Fecha de ingreso o alta
+                                                    </label>
+                                                </div>
+                                                <div class=\"col-9\">
+                                                    <div class=\"d-inline-flex align-items-center mb-1\">
+                                                        <i class=\"fas fa-birthday-cake text-success text-110 ml-25 pos-abs\"></i>
+                                                        <input type=\"date\" class=\"form-control form-control-lg px-475\" id=\"fecha_de_alta\">
+                                                    </div>
+                                                </div>
+                                            </div>   
                                         </div>                                        
                                     </div>
                                     
@@ -583,13 +595,14 @@ class Beneficiarios{
         </div>";
         echo $this->formulario;
     }
-    function guardar_nuevo_usuario($id_de_usuario,$numero_de_id_de_usuario,$nombres,$apellidos,$fecha_de_nacimiento,$cargo_ocupacion,$telefono_de_contacto,$email,$provincia,$ciudad,$direccion,$id_de_dependiente,$rol_familiar)
+    function guardar_nuevo_usuario($id_de_usuario,$numero_de_id_de_usuario,$nombres,$apellidos,$fecha_de_nacimiento,$fecha_de_alta,$cargo_ocupacion,$telefono_de_contacto,$email,$provincia,$ciudad,$direccion,$id_de_dependiente,$rol_familiar)
     {
         $this->id_de_usuario = $id_de_usuario;
         $this->numero_de_id_de_usuario = $numero_de_id_de_usuario;
         $this->nombres = utf8_encode(strtoupper($nombres));
         $this->apellidos = utf8_encode(strtoupper($apellidos));
         $this->fecha_de_nacimiento = $fecha_de_nacimiento;
+        $this->fecha_de_alta = $fecha_de_alta;
         $this->cargo_ocupacion = utf8_encode($cargo_ocupacion);
         $this->telefono_de_contacto = $telefono_de_contacto;
         $this->email = $email;
@@ -621,7 +634,7 @@ class Beneficiarios{
                 'nombres'=>$this->nombres,
                 'apellidos'=>$this->apellidos,
                 'fecha_de_nacimiento'=>$this->fecha_de_nacimiento,
-                'fecha_de_alta'=>date('Y-m-d'),
+                'fecha_de_alta'=>$this->fecha_de_alta,
                 'cargo_ocupacion'=>$this->cargo_ocupacion,
                 'telefono_de_contacto'=>$this->telefono_de_contacto,
                 'email'=>$this->email,

@@ -1,4 +1,5 @@
 $(function(){
+    
     generar_lista_de_servicios_medicos('*');
 })
 function generar_lista_de_servicios_medicos(filtro)

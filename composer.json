@@ -2,7 +2,7 @@
     "require": {
         "catfan/medoo": "^1.7",
       "ext-openssl": "*",
-        "phpmailer/phpmailer": "^6.2",
+        "phpmailer/phpmailer": "^6.4",
         "ua-parser/uap-php": "^3.9",
         "mpdf/mpdf": "^8.0"
     }

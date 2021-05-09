@@ -144,7 +144,7 @@ class ServiciosMedicos
                                     <div class=\"row\">
                                         <div class=\"col-3 col-form-label text-sm-right pr-0\">
                                             <label for=\"valor_dentro_de_cobertura\" class=\"mb-0\">
-                                               Valor dentro de cobertura
+                                               Valor dentro de convenio
                                             </label>
                                         </div>
                                         <div class=\"col-9\">
@@ -157,7 +157,7 @@ class ServiciosMedicos
                                     <div class=\"row\">
                                         <div class=\"col-3 col-form-label text-sm-right pr-0\">
                                             <label for=\"valor_fuera_de_cobertura\" class=\"mb-0\">
-                                               Valor fuera de cobertura
+                                               Valor fuera de convenio
                                             </label>
                                         </div>
                                         <div class=\"col-9\">

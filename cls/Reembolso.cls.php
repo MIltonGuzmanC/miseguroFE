@@ -613,7 +613,7 @@ class Reembolso
                     <div class='col-5'><input type='number' min='1' class='form-control text-90' id='subtotal'></div>
                 </div>";
         $input.="<div class='row form-group'>
-                    <div class='col-7'><label for='valor_no_cubierto' class='text-blue-d1'>Valor no cubierto $</label></div>
+                    <div class='col-7'><label for='valor_no_cubierto' class='text-blue-d1'>Valor no cubierto por tabla Harvard$</label></div>
                     <div class='col-5'><input type='number' min='1' class='form-control text-90' id='valor_no_cubierto'></div>
                 </div>";
         $input.="<div class='row form-group'>

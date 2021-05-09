@@ -123,35 +123,45 @@
 
                     </nav>
                     <div class="btn-group btn-group-toggle btn-group-vertical d-flex" data-toggle="buttons">
-                        <a href="#" class="d-style mb-1 active btn py-25 btn-outline-dark btn-h-outline-blue btn-a-outline-blue btn-a-bold w-100 btn-brc-tp border-none border-l-4 radius-l-0 radius-r-round text-left text-80" id="btn_servicios_medicos">
-                            <i class="fa fa-medkit text-120 w-3 f-n-hover"></i>
-                            SERVICIOS MEDICOS
-                            <input type="radio" name="btn_servicios_medicos">
-                        </a>
+                        <ul class="nav has-active-border active-on-right">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link dropdown-toggle collapsed">
+                                    <i class="nav-icon fa fa-cogs text-blue-d1"></i>
+                                    <span class="nav-text fadeable">
+                                    <span>Configuraci&oacute;n</span>
+                                    </span>
+                                    <b class="caret fa fa-angle-left rt-n90"></b>
+                                </a>
+                                <div class="hideable submenu collapse" style="">
+                                    <ul class="submenu-inner">
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link" id="btn_servicios_medicos">
+                                                <i class="fa fa-medkit text-120 w-3 f-n-hover"></i>
+                                                Servicios m&eacute;dicos
+                                            </a>
+                                            <a href="#" class="nav-link" id="btn_servicios_medicos_especiales">
+                                                <i class="fa fa-plus-square text-120 text-orange-d1 w-3 f-n-hover"></i>
+                                                Especiales
+                                            </a>
+                                            <a href="#" class="nav-link" id="btn_cie10">
+                                                <i class="fa fa-heart-broken text-danger text-120 w-3 f-n-hover"></i>
+                                                CIE-10
+                                            </a>
+                                            <a href="#" class="nav-link" id="btn_establecimientos">
+                                                <i class="fa fa-hospital-symbol text-success-d1 text-120 w-3 f-n-hover"></i>
+                                                Convenios
+                                            </a>
+                                            <a href="#" class="nav-link" id="btn_empresas_afiliadas">
+                                                <i class="fa fa-layer-group text-info-d1 text-120 w-3 f-n-hover"></i>
+                                                Grupos Farmaenlace
+                                            </a>
 
-                        <a href="#" class="d-style mb-1 btn py-25 btn-outline-dark btn-h-outline-blue btn-a-outline-blue btn-a-bold w-100 btn-brc-tp border-none border-l-4 radius-0 text-left text-80 radius-l-0 radius-r-round" id="btn_servicios_medicos_especiales">
-                            <i class="fa fa-plus-square text-120 text-orange-d1 w-3 f-n-hover"></i>
-                            SERVICIOS MEDICOS ESPECIALES
-                            <input type="radio" name="btn_servicios_medicos_especiales">
-                        </a>
+                                        </li>
+                                    </ul>
+                                </div>
 
-                        <a href="#" class="d-style mb-1 btn py-25 btn-outline-dark btn-h-outline-blue btn-a-outline-blue btn-a-bold w-100 btn-brc-tp border-none border-l-4 radius-0 text-left text-80 radius-l-0 radius-r-round" id="btn_cie10">
-                            <i class="fa fa-heart-broken text-danger text-120 w-3 f-n-hover"></i>
-                            CIE-10
-                            <input type="radio" name="btn_cie10">
-                        </a>
-
-                        <a href="#" class="d-style mb-1 btn py-25 btn-outline-dark btn-h-outline-blue btn-a-outline-blue btn-a-bold w-100 btn-brc-tp border-none border-l-4 radius-0 text-left text-80 radius-l-0 radius-r-round" id="btn_establecimientos">
-                            <i class="fa fa-hospital-symbol text-success-d1 text-120 w-3 f-n-hover"></i>
-                            ESTABLECIMIENTOS AFILIADOS
-                            <input type="radio" name="btn_establecimientos">
-                        </a>
-
-                        <a href="#" class="d-style mb-1 btn py-25 btn-outline-dark btn-h-outline-blue btn-a-outline-blue btn-a-bold w-100 btn-brc-tp border-none border-l-4 radius-0 text-left text-80 radius-l-0 radius-r-round" id="btn_empresas_afiliadas">
-                            <i class="fa fa-layer-group text-info-d1 text-120 w-3 f-n-hover"></i>
-                            GRUPOS FARMAENLACE
-                            <input type="radio" name="btn_empresas_afiliadas">
-                        </a>
+                            </li>
+                        </ul>
 
                         <a href="#" class="d-style mb-1 btn py-25 btn-outline-dark btn-h-outline-blue btn-a-outline-blue btn-a-bold w-100 btn-brc-tp border-none border-l-4 radius-0 text-left text-80 radius-l-0 radius-r-round" id="btn_beneficiarios_y_afiliados">
                             <i class="fa fa-user-friends text-yellow-d4 text-120 w-3 f-n-hover"></i>
@@ -164,6 +174,7 @@
                             CREDITOS Y REEMBOLSOS
                             <input type="radio" name="btn_reembolsos_y_creditos">
                         </a>
+                        </ul>
                     </div>
                     <ul class="nav has-active-border active-on-right">
                     <li class="nav-item">

@@ -4,18 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a06fa6d-6808-47a1-9bdf-176916333451" name="Default Changelist" comment="cambios">
-      <change afterPath="$PROJECT_DIR$/controllers/generar_reporte_por_periodo.ctrl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/reembolsos_por_periodo.rp.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reembolsos_por_periodo.rp.php" afterDir="false" />
+    <list default="true" id="9a06fa6d-6808-47a1-9bdf-176916333451" name="Default Changelist" comment="cambios 1.0">
+      <change afterPath="$PROJECT_DIR$/vendor/phpmailer/phpmailer/language/phpmailer.lang-sr_latn.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpmailer/phpmailer/phpunit.xml.dist" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/administrador.vw.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrador.vw.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cls/Beneficiarios.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/Beneficiarios.cls.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cls/GeneradorDeReportes.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/GeneradorDeReportes.cls.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/guardar_nuevo_usuario.ctrl.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/guardar_nuevo_usuario.ctrl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/admin_buttons.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/admin_buttons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/beneficiarios.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/beneficiarios.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/servicios_medicos.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/servicios_medicos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cls/Mailer.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/Mailer.cls.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cls/Reembolso.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/Reembolso.cls.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cls/ServiciosMedicos.cls.php" beforeDir="false" afterPath="$PROJECT_DIR$/cls/ServiciosMedicos.cls.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.ini.php" beforeDir="false" afterPath="$PROJECT_DIR$/config.ini.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parametros.xml" beforeDir="false" afterPath="$PROJECT_DIR$/parametros.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/InstalledVersions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/InstalledVersions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_real.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_real.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/phpmailer/phpmailer/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/phpmailer/phpmailer/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/phpmailer/phpmailer/SECURITY.md" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/phpmailer/phpmailer/SECURITY.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/phpmailer/phpmailer/VERSION" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/phpmailer/phpmailer/VERSION" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/phpmailer/phpmailer/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/phpmailer/phpmailer/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/phpmailer/phpmailer/get_oauth_token.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/phpmailer/phpmailer/get_oauth_token.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/phpmailer/phpmailer/language/phpmailer.lang-cs.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/phpmailer/phpmailer/language/phpmailer.lang-cs.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/phpmailer/phpmailer/language/phpmailer.lang-sk.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/phpmailer/phpmailer/language/phpmailer.lang-sk.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/phpmailer/phpmailer/language/phpmailer.lang-uk.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/phpmailer/phpmailer/language/phpmailer.lang-uk.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/phpmailer/phpmailer/src/OAuth.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/phpmailer/phpmailer/src/OAuth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/phpmailer/phpmailer/src/PHPMailer.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/phpmailer/phpmailer/src/PHPMailer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/phpmailer/phpmailer/src/POP3.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/phpmailer/phpmailer/src/POP3.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/phpmailer/phpmailer/src/SMTP.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/phpmailer/phpmailer/src/SMTP.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +62,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/administrador.vw.php" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
   </component>
   <component name="PhpServers">
     <servers>
@@ -78,6 +98,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="full.screen.before.presentation.mode" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -237,7 +258,16 @@
       <workItem from="1616624198943" duration="1191000" />
       <workItem from="1616626016691" duration="1422000" />
       <workItem from="1616702523894" duration="628000" />
-      <workItem from="1616709509369" duration="775000" />
+      <workItem from="1616709509369" duration="808000" />
+      <workItem from="1617021899974" duration="8000" />
+      <workItem from="1619976888108" duration="1623000" />
+      <workItem from="1619999515320" duration="57000" />
+      <workItem from="1620132811504" duration="1236000" />
+      <workItem from="1620274819357" duration="229000" />
+      <workItem from="1620275067350" duration="440000" />
+      <workItem from="1620315937881" duration="5417000" />
+      <workItem from="1620389016829" duration="4788000" />
+      <workItem from="1620502072248" duration="3961000" />
     </task>
     <task id="LOCAL-00001" summary="adición de seguridad en puerto de DB">
       <created>1611020661408</created>
@@ -400,7 +430,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616436752466</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="cambios 1.0">
+      <created>1616710687048</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1616710687048</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -438,7 +475,8 @@
     <MESSAGE value="proyecto completo, realizando reembolsos formulario 1" />
     <MESSAGE value="reembolso de formulario 1 completo" />
     <MESSAGE value="cambios" />
-    <option name="LAST_COMMIT_MESSAGE" value="cambios" />
+    <MESSAGE value="cambios 1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="cambios 1.0" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
